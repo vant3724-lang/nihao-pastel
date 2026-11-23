@@ -1,0 +1,2987 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nihao Pastel — Học Tiếng Trung Từ Số 0 Đến HSK 5</title>
+  <meta name="description" content="Landing page học tiếng Trung hiện đại, tối ưu trên điện thoại, chia bài học theo mục tiêu tăng dần từ HSK 1 đến HSK 5 cho người mới bắt đầu." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Noto+Sans+SC:wght@500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet" />
+  <style>
+/* ==========================================================================
+   Nihao Pastel — Retro Pastel Mobile-First Design System
+   Tối ưu trải nghiệm học tiếng Trung từ con số 0 (HSK 1 → HSK 5)
+   ========================================================================== */
+
+:root {
+  /* Palette Retro Pastel */
+  --bg-paper: #FDF8EE;
+  --bg-card: #FFFDF9;
+  --bg-warm: #F6ECDC;
+  --ink: #231F20;
+  --ink-muted: #5A514C;
+  --ink-soft: #7B706A;
+
+  /* 5 Pastel Level Accents */
+  --peach: #FFB5A7;
+  --peach-dark: #F79A89;
+  --peach-soft: #FFF0ED;
+  --mint: #B8E0D2;
+  --mint-soft: #EDF9F5;
+  --butter: #FCE38A;
+  --butter-soft: #FFFBE6;
+  --lavender: #D6CCF2;
+  --lavender-soft: #F5F2FD;
+  --sky: #B8D8F8;
+  --sky-soft: #EEF6FE;
+
+  /* Retro Shadows & Borders */
+  --border: 2px solid var(--ink);
+  --shadow-sm: 3px 3px 0 var(--ink);
+  --shadow-md: 5px 5px 0 var(--ink);
+  --shadow-lg: 7px 7px 0 var(--ink);
+
+  /* Radii */
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* Typography */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+  --font-cn: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  /* Active Level Dynamic Vars (updated by JS) */
+  --active-accent: var(--peach);
+  --active-soft: var(--peach-soft);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background-color: var(--bg-paper);
+  /* Subtle retro stationery dot grid */
+  background-image: radial-gradient(rgba(35, 31, 32, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-bottom: 76px; /* Room for mobile sticky bottom bar */
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: 18px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 28px;
+  }
+}
+
+.cn-text {
+  font-family: var(--font-cn);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Buttons & Tactile Retro Controls
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: var(--border);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.96rem;
+  cursor: pointer;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.18s ease;
+  text-align: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.btn-primary {
+  background: var(--peach);
+}
+
+.btn-primary:hover {
+  background: var(--peach-dark);
+}
+
+.btn-mint {
+  background: var(--mint);
+}
+
+.btn-butter {
+  background: var(--butter);
+}
+
+.btn-sm {
+  min-height: 40px;
+  padding: 8px 15px;
+  font-size: 0.875rem;
+}
+
+.btn-icon {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* ==========================================================================
+   Header & Mobile Drawer
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(253, 248, 238, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 66px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.06rem;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (min-width: 480px) {
+  .brand {
+    gap: 10px;
+    font-size: 1.2rem;
+  }
+}
+
+.brand-stamp {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 480px) {
+  .brand-stamp {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.brand-sub {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--butter);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 2px 8px;
+}
+
+@media (min-width: 1060px) {
+  .brand-sub {
+    display: inline-block;
+  }
+}
+
+.nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: background-color 0.16s ease;
+}
+
+.nav-link:hover {
+  background: var(--bg-warm);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.header-actions .btn-sm {
+  white-space: nowrap;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+}
+
+@media (min-width: 480px) {
+  .header-actions .btn-sm {
+    padding: 8px 15px;
+    font-size: 0.875rem;
+  }
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: pointer;
+}
+
+.menu-toggle:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+@media (min-width: 960px) {
+  .nav-desktop {
+    display: flex;
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
+
+.mobile-drawer {
+  display: none;
+  border-top: var(--border);
+  background: var(--bg-card);
+  padding: 14px 18px 18px;
+}
+
+.mobile-drawer.is-open {
+  display: block;
+}
+
+.mobile-drawer-links {
+  display: grid;
+  gap: 8px;
+}
+
+.mobile-drawer-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--bg-paper);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Section Common Patterns
+   ========================================================================== */
+.section {
+  padding-block: 44px;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: 68px;
+  }
+}
+
+.section-header {
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+
+.section-header.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--butter);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 2px 2px 0 var(--ink);
+  margin-bottom: 14px;
+}
+
+.eyebrow.mint { background: var(--mint); }
+.eyebrow.peach { background: var(--peach); }
+.eyebrow.lavender { background: var(--lavender); }
+
+.section-title {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 5.2vw, 2.55rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.section-desc {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.98rem;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+  padding-top: 28px;
+  padding-bottom: 42px;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+}
+
+.hero-grid {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 40px;
+  }
+}
+
+.hero-title {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: clamp(2.05rem, 6.8vw, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.highlight-pill {
+  display: inline-block;
+  padding: 0 10px 2px;
+  background: var(--peach);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: rotate(-1deg);
+}
+
+.hero-lead {
+  margin: 0 0 24px;
+  font-size: 1.02rem;
+  color: var(--ink-muted);
+  max-width: 540px;
+}
+
+.hero-cta-group {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 520px) {
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.stat-chip {
+  background: var(--bg-card);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 10px 10px;
+  box-shadow: 3px 3px 0 var(--ink);
+  text-align: center;
+}
+
+.stat-chip strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  line-height: 1.2;
+}
+
+.stat-chip span {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+/* Hero Visual Card */
+.hero-visual {
+  position: relative;
+}
+
+.retro-frame {
+  position: relative;
+  background: var(--bg-card);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.retro-frame-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--butter);
+  border-bottom: var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.frame-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.frame-dots i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+}
+
+.frame-dots i:nth-child(1) { background: var(--peach); }
+.frame-dots i:nth-child(2) { background: var(--mint); }
+.frame-dots i:nth-child(3) { background: var(--lavender); }
+
+.hero-illustration {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--bg-paper);
+}
+
+.hero-caption-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-top: var(--border);
+  font-size: 0.85rem;
+}
+
+.hero-mini-hanzi {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.hero-mini-hanzi .cn-text {
+  font-size: 1.15rem;
+  background: var(--mint);
+  padding: 2px 9px;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   Beginner Pain-Point Relief (Why Start Here)
+   ========================================================================== */
+.relief-grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .relief-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+.relief-card {
+  background: var(--bg-card);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.relief-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.relief-card:nth-child(1) .relief-badge { background: var(--peach); }
+.relief-card:nth-child(2) .relief-badge { background: var(--mint); }
+.relief-card:nth-child(3) .relief-badge { background: var(--lavender); }
+
+.relief-card h3 {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  line-height: 1.3;
+}
+
+.relief-card p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.93rem;
+}
+
+/* ==========================================================================
+   Core Roadmap Section: HSK 1 → HSK 5
+   ========================================================================== */
+.roadmap-banner-wrap {
+  margin-bottom: 24px;
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-md);
+}
+
+.roadmap-banner-img {
+  width: 100%;
+  max-height: 290px;
+  object-fit: cover;
+  object-position: center;
+  background: var(--bg-paper);
+}
+
+/* Horizontal Thumb-Friendly Level Selector on Mobile */
+.level-tabs-scroller {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 14px;
+  margin-bottom: 14px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.level-tabs-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .level-tabs-scroller {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    overflow: visible;
+    padding-bottom: 8px;
+  }
+}
+
+.level-tab {
+  flex: 0 0 auto;
+  min-width: 122px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 12px 14px;
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.level-tab:hover {
+  transform: translateY(-2px);
+}
+
+.level-tab-code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.level-tab-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+}
+
+.level-tab-label {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+.level-tab.is-active {
+  background: var(--tab-color, var(--peach));
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.level-tab.is-active .level-tab-label {
+  color: var(--ink);
+}
+
+/* Progress Meter across HSK 1 → 5 */
+.progress-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: var(--border);
+  border-radius: var(--radius-md);
+}
+
+.progress-track {
+  flex: 1;
+  height: 14px;
+  background: var(--bg-warm);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 20%;
+  background: var(--active-accent);
+  border-right: 1.5px solid var(--ink);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease;
+}
+
+.progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Active Level Panel */
+.level-panel {
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.level-panel-top {
+  padding: 22px 20px;
+  background: var(--active-soft);
+  border-bottom: var(--border);
+  transition: background-color 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .level-panel-top {
+    padding: 28px 30px;
+  }
+}
+
+.level-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stamp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--active-accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.level-panel-title {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 4vw, 1.85rem);
+  line-height: 1.25;
+}
+
+.level-goal-summary {
+  margin: 0 0 18px;
+  color: var(--ink-muted);
+  font-size: 0.96rem;
+}
+
+.outcomes-box {
+  background: var(--bg-card);
+  border: 1.5px dashed var(--ink);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.outcomes-box-title {
+  margin: 0 0 8px;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.outcomes-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.outcomes-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.92rem;
+}
+
+.outcomes-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--active-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+/* Lesson Accordion List */
+.lessons-container {
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .lessons-container {
+    padding: 26px 30px;
+  }
+}
+
+.lessons-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.lessons-header h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+}
+
+.completed-badge {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--bg-paper);
+}
+
+.lesson-list {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-item {
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-paper);
+  overflow: hidden;
+  transition: box-shadow 0.16s ease;
+}
+
+.lesson-item.is-open {
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.lesson-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 16px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  min-height: 58px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lesson-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.lesson-num {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 4px 9px;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  background: var(--active-accent);
+}
+
+.lesson-title-wrap {
+  min-width: 0;
+}
+
+.lesson-title {
+  display: block;
+  font-weight: 700;
+  font-size: 0.96rem;
+  line-height: 1.35;
+}
+
+.lesson-sub {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.lesson-chevron {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--bg-card);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.lesson-item.is-open .lesson-chevron {
+  transform: rotate(180deg);
+  background: var(--active-accent);
+}
+
+.lesson-body {
+  display: none;
+  padding: 0 16px 16px;
+  border-top: 1.5px dashed rgba(35, 31, 32, 0.25);
+}
+
+.lesson-item.is-open .lesson-body {
+  display: block;
+}
+
+.lesson-goal-line {
+  margin: 12px 0;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.lesson-goal-line strong {
+  color: var(--ink);
+}
+
+.sample-phrases {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sample-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-paper);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+}
+
+.sample-hanzi {
+  font-family: var(--font-cn);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.sample-pinyin {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #8A4A3E;
+}
+
+.sample-meaning {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.speak-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--butter);
+  box-shadow: 2px 2px 0 var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.speak-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.lesson-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mark-done-btn.is-done {
+  background: var(--mint);
+}
+
+.level-panel-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bg-warm);
+  border-top: var(--border);
+}
+
+@media (min-width: 768px) {
+  .level-panel-footer {
+    padding: 18px 30px;
+  }
+}
+
+/* ==========================================================================
+   Interactive Mini Flashcard Section
+   ========================================================================== */
+.try-section {
+  background: var(--bg-warm);
+  border-block: var(--border);
+}
+
+.try-layout {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .try-layout {
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 36px;
+  }
+}
+
+.flashcard-stage {
+  perspective: 1100px;
+}
+
+.flashcard {
+  position: relative;
+  width: 100%;
+  min-height: 295px;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.flashcard.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flashcard-front {
+  background: var(--bg-card);
+}
+
+.flashcard-back {
+  background: var(--butter-soft);
+  transform: rotateY(180deg);
+}
+
+.fc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.fc-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--peach);
+}
+
+.fc-front-center {
+  text-align: center;
+  padding-block: 14px;
+}
+
+.fc-hanzi-big {
+  font-family: var(--font-cn);
+  font-size: clamp(3rem, 11vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.fc-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  color: var(--ink-muted);
+  background: var(--bg-paper);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  border: 1.5px dashed var(--ink);
+}
+
+.fc-back-content {
+  text-align: left;
+  display: grid;
+  gap: 10px;
+  margin-block: 8px;
+}
+
+.fc-pinyin-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.fc-pinyin-big {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #8A4A3E;
+}
+
+.fc-meaning-big {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.fc-tone-note {
+  font-size: 0.85rem;
+  background: var(--bg-card);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+}
+
+.fc-example-box {
+  font-size: 0.86rem;
+  color: var(--ink-muted);
+  border-left: 3px solid var(--ink);
+  padding-left: 10px;
+}
+
+.fc-example-box .cn-text {
+  display: block;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.fc-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.fc-counter {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.fc-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.fc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--bg-card);
+  padding: 0;
+  cursor: pointer;
+}
+
+.fc-dot.is-active {
+  background: var(--peach);
+  width: 24px;
+  border-radius: var(--radius-pill);
+}
+
+.fc-dot.is-learned {
+  background: var(--mint);
+}
+
+/* ==========================================================================
+   How It Works (15 Min Daily Method)
+   ========================================================================== */
+.method-grid {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .method-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 36px;
+  }
+}
+
+.method-illustration-card {
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.method-illustration-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.steps-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  background: var(--bg-card);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.step-num-stamp {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border: var(--border);
+  border-radius: 14px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.step-card:nth-child(1) .step-num-stamp { background: var(--peach); }
+.step-card:nth-child(2) .step-num-stamp { background: var(--butter); }
+.step-card:nth-child(3) .step-num-stamp { background: var(--mint); }
+
+.step-card h3 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+}
+
+.step-card p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+}
+
+/* ==========================================================================
+   FAQ Accordion
+   ========================================================================== */
+.faq-list {
+  max-width: 760px;
+  margin-inline: auto;
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.98rem;
+  cursor: pointer;
+  min-height: 54px;
+}
+
+.faq-plus {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--lavender);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  transition: transform 0.2s ease;
+}
+
+.faq-item.is-open .faq-plus {
+  transform: rotate(45deg);
+  background: var(--peach);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 18px 16px;
+  color: var(--ink-muted);
+  font-size: 0.94rem;
+}
+
+.faq-item.is-open .faq-answer {
+  display: block;
+}
+
+/* ==========================================================================
+   Final CTA & Mini Study-Plan Generator
+   ========================================================================== */
+.cta-card {
+  background: var(--peach-soft);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 26px 20px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .cta-card {
+    padding: 40px 36px;
+  }
+}
+
+.goal-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0 22px;
+}
+
+.goal-option {
+  padding: 10px 16px;
+  min-height: 44px;
+  border: var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: background-color 0.16s ease, transform 0.14s ease;
+}
+
+.goal-option.is-selected {
+  background: var(--butter);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.cta-form {
+  display: grid;
+  gap: 10px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 560px) {
+  .cta-form {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.cta-input {
+  min-height: 48px;
+  padding: 10px 16px;
+  border: var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  font-size: 0.95rem;
+}
+
+.plan-result {
+  display: none;
+  max-width: 560px;
+  margin: 18px auto 0;
+  padding: 16px 18px;
+  text-align: left;
+  background: var(--bg-card);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.plan-result.is-visible {
+  display: block;
+}
+
+/* ==========================================================================
+   Footer & Mobile Sticky Bar
+   ========================================================================== */
+.site-footer {
+  border-top: var(--border);
+  background: var(--bg-card);
+  padding-block: 28px;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* Mobile Thumb Quick-Bar */
+.mobile-bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: rgba(253, 248, 238, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: var(--border);
+}
+
+@media (min-width: 768px) {
+  .mobile-bottom-bar {
+    display: none;
+  }
+}
+
+.bottom-bar-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 48px;
+  border-radius: 12px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  border: 1.5px solid transparent;
+}
+
+.bottom-bar-link.is-primary {
+  background: var(--peach);
+  border-color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* Toast Notification for Audio / Feedback */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 84px;
+  transform: translateX(-50%) translateY(16px);
+  z-index: 60;
+  background: var(--ink);
+  color: var(--bg-paper);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .toast {
+    bottom: 24px;
+  }
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+</style>
+</head>
+<body>
+  <!-- Sticky Retro Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Nihao Pastel — Trang chủ">
+        <svg class="brand-stamp" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="38" height="38" rx="11" fill="#FFB5A7" stroke="#231F20" stroke-width="2.5"/>
+          <rect x="7" y="7" width="30" height="30" rx="7" fill="#FDF8EE" stroke="#231F20" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <circle cx="22" cy="18" r="6" fill="#FCE38A" stroke="#231F20" stroke-width="2"/>
+          <path d="M13 30C15.5 25.5 18.5 24 22 24C25.5 24 28.5 25.5 31 30" fill="#B8E0D2" stroke="#231F20" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Nihao Pastel</span>
+        <span class="brand-sub">HSK 1 → 5</span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Điều hướng chính">
+        <a class="nav-link" href="#lo-trinh">Lộ trình HSK 1–5</a>
+        <a class="nav-link" href="#hoc-thu">Học thử 1 phút</a>
+        <a class="nav-link" href="#cach-hoc">Cách học</a>
+        <a class="nav-link" href="#hoi-dap">Hỏi đáp</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#lo-trinh" class="btn btn-primary btn-sm" id="header-start-btn">Bắt đầu HSK 1</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-drawer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-drawer-links" aria-label="Điều hướng di động">
+        <a href="#lo-trinh"><span>Lộ trình mục tiêu HSK 1 → 5</span><span>→</span></a>
+        <a href="#hoc-thu"><span>Học thử Flashcard bài 01</span><span>→</span></a>
+        <a href="#cach-hoc"><span>Cách học 15 phút/ngày</span><span>→</span></a>
+        <a href="#hoi-dap"><span>Hỏi đáp cho người mới</span><span>→</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">✦ Dành riêng cho người bắt đầu từ số 0</span>
+          <h1 class="hero-title">
+            Học tiếng Trung nhẹ tênh — từng bước từ <span class="highlight-pill">HSK 1 → 5</span>
+          </h1>
+          <p class="hero-lead">
+            Tạm biệt những trang web cũ kỹ, rối mắt và khó bấm trên điện thoại. Mỗi bài học chia gọn theo từng mục tiêu giao tiếp tăng dần để bạn mở máy lên là học được ngay.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#lo-trinh" class="btn btn-primary" id="hero-start-hsk1">Bắt đầu từ HSK 1 miễn phí →</a>
+            <a href="#hoc-thu" class="btn btn-mint">Học thử 1 phút ngay</a>
+          </div>
+
+          <div class="hero-stats" aria-label="Điểm nổi bật">
+            <div class="stat-chip">
+              <strong>Từ số 0</strong>
+              <span>Học chuẩn Pinyin</span>
+            </div>
+            <div class="stat-chip">
+              <strong>15 phút</strong>
+              <span>Mỗi ngày trên ĐT</span>
+            </div>
+            <div class="stat-chip">
+              <strong>5 chặng</strong>
+              <span>HSK 1 đến HSK 5</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="retro-frame">
+            <div class="retro-frame-bar">
+              <div class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <span>NIHAO_STUDY_CARD.01</span>
+            </div>
+            <img
+              id="hero-img"
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDgwIiBmaWxsPSJub25lIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJkb3RHcmlkIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIzIiBjeT0iMyIgcj0iMS4yIiBmaWxsPSIjMjMxRjIwIiBvcGFjaXR5PSIwLjA4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgoKICA8IS0tIFdhcm0gUmV0cm8gQ3JlYW0gQ2FudmFzIC0tPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDgwIiBmaWxsPSIjRkRGOEVFIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0ODAiIGZpbGw9InVybCgjZG90R3JpZCkiLz4KCiAgPCEtLSBEZWNvcmF0aXZlIFBhc3RlbCBTdW4gJiBCYWNrZHJvcCBBcmNoIC0tPgogIDxjaXJjbGUgY3g9IjUxNSIgY3k9Ijk2IiByPSI1MiIgZmlsbD0iI0ZDRTM4QSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNSIvPgogIDxwYXRoIGQ9Ik05MCAzNjUgQzkwIDE5MCAyMDUgMTEwIDMyMCAxMTAgQzQzNSAxMTAgNTUwIDE5MCA1NTAgMzY1IFoiIGZpbGw9IiNGRkZERjkiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KICA8cGF0aCBkPSJNMTI2IDM2NSBDMTI2IDIyMCAyMTggMTQ4IDMyMCAxNDggQzQyMiAxNDggNTE0IDIyMCA1MTQgMzY1IiBmaWxsPSIjRURGOUY1IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+CgogIDwhLS0gRmxvYXRpbmcgQ2xvdWRzIC0tPgogIDxnIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTTYyIDEyOCBIMTQ0IEMxNTMgMTI4IDE1OSAxMjEgMTU5IDExMyBDMTU5IDEwNSAxNTIgOTkgMTQ0IDk5IEMxNDIgODYgMTMxIDc4IDExOCA3OCBDMTA0IDc4IDkzIDg4IDkxIDEwMSBDODggMTAwIDg1IDk5IDgyIDk5IEM3MSA5OSA2MiAxMDggNjIgMTE5IFoiIGZpbGw9IiNGRkZERjkiLz4KICAgIDxwYXRoIGQ9Ik00NzUgMTgyIEg1NjYgQzU3NCAxODIgNTgwIDE3NiA1ODAgMTY4IEM1ODAgMTYwIDU3MyAxNTQgNTY1IDE1NCBDNTYyIDE0MiA1NTEgMTM1IDUzOCAxMzUgQzUyNSAxMzUgNTE0IDE0NCA1MTIgMTU2IEM1MDIgMTU2IDQ5NCAxNjMgNDk0IDE3MiBaIiBmaWxsPSIjRkZGREY5Ii8+CiAgPC9nPgoKICA8IS0tIFJldHJvIERlc2sgU3VyZmFjZSAtLT4KICA8cmVjdCB4PSIyOCIgeT0iMzYyIiB3aWR0aD0iNTg0IiBoZWlnaHQ9Ijg2IiByeD0iMTgiIGZpbGw9IiNGRkI1QTciIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjgiLz4KICA8bGluZSB4MT0iMjgiIHkxPSIzODIiIHgyPSI2MTIiIHkyPSIzODIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjIiLz4KICA8cmVjdCB4PSI1MiIgeT0iMzk2IiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iI0ZERjhFRSIgb3BhY2l0eT0iMC42NSIvPgogIDxyZWN0IHg9IjQ2OCIgeT0iMzk2IiB3aWR0aD0iMTE4IiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iI0ZERjhFRSIgb3BhY2l0eT0iMC42NSIvPgoKICA8IS0tIExlZnQ6IFN0YWNrZWQgUmV0cm8gTm90ZWJvb2tzIC0tPgogIDxnPgogICAgPHJlY3QgeD0iNjQiIHk9IjMzMCIgd2lkdGg9IjEzMiIgaGVpZ2h0PSIzMiIgcng9IjgiIGZpbGw9IiNENkNDRjIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KICAgIDxsaW5lIHgxPSI4MCIgeTE9IjM0NiIgeDI9IjE3OCIgeTI9IjM0NiIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNCIvPgogICAgPHJlY3QgeD0iNzYiIHk9IjMwMiIgd2lkdGg9IjExOCIgaGVpZ2h0PSIyOCIgcng9IjgiIGZpbGw9IiNCOEUwRDIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KICAgIDxyZWN0IHg9IjE1NiIgeT0iMzAyIiB3aWR0aD0iMTIiIGhlaWdodD0iMjgiIGZpbGw9IiNGQ0UzOEEiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPC9nPgoKICA8IS0tIExlZnQ6IENvenkgU3RlYW1pbmcgSmFzbWluZSBUZWFjdXAgLS0+CiAgPGc+CiAgICA8IS0tIFN0ZWFtIHdhdmVzIC0tPgogICAgPHBhdGggZD0iTTExNCAyMzQgQzEwOCAyMjQgMTIwIDIxNCAxMTQgMjAyIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMzQgMjI4IEMxMjggMjE2IDE0MCAyMDYgMTM0IDE5NCIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8IS0tIEhhbmRsZSAtLT4KICAgIDxwYXRoIGQ9Ik0xNTggMjYwIEMxNzYgMjYwIDE3NiAyODYgMTU4IDI4NiIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNiIgZmlsbD0ibm9uZSIvPgogICAgPCEtLSBDdXAgYm9keSAtLT4KICAgIDxwYXRoIGQ9Ik05MiAyNDggSDE2MCBWMjg0IEMxNjAgMjk2IDE1MCAzMDIgMTM4IDMwMiBIMTE0IEMxMDIgMzAyIDkyIDI5NiA5MiAyODQgWiIgZmlsbD0iI0ZDRTM4QSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNiIvPgogICAgPCEtLSBDdXRlIGZhY2Ugb24gY3VwIC0tPgogICAgPGNpcmNsZSBjeD0iMTE2IiBjeT0iMjc0IiByPSIyLjYiIGZpbGw9IiMyMzFGMjAiLz4KICAgIDxjaXJjbGUgY3g9IjEzNiIgY3k9IjI3NCIgcj0iMi42IiBmaWxsPSIjMjMxRjIwIi8+CiAgICA8cGF0aCBkPSJNMTIxIDI4MCBRMTI2IDI4NSAxMzEgMjgwIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8Y2lyY2xlIGN4PSIxMDkiIGN5PSIyNzkiIHI9IjMuOCIgZmlsbD0iI0ZGQjVBNyIgb3BhY2l0eT0iMC44NSIvPgogICAgPGNpcmNsZSBjeD0iMTQzIiBjeT0iMjc5IiByPSIzLjgiIGZpbGw9IiNGRkI1QTciIG9wYWNpdHk9IjAuODUiLz4KICA8L2c+CgogIDwhLS0gQ2VudGVycGllY2U6IFJldHJvIFNtYXJ0cGhvbmUgTGVhcm5pbmcgQXBwIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyNiAxMTIpIj4KICAgIDwhLS0gSGFyZCBPZmZzZXQgU2hhZG93IC0tPgogICAgPHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9IjE4OCIgaGVpZ2h0PSIyNzgiIHJ4PSIyOCIgZmlsbD0iIzIzMUYyMCIvPgogICAgPCEtLSBQaG9uZSBPdXRlciBTaGVsbCAtLT4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxODgiIGhlaWdodD0iMjc4IiByeD0iMjgiIGZpbGw9IiNCOEQ4RjgiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjgiLz4KICAgIDwhLS0gU2NyZWVuIC0tPgogICAgPHJlY3QgeD0iMTMiIHk9IjE4IiB3aWR0aD0iMTYyIiBoZWlnaHQ9IjIzNiIgcng9IjE4IiBmaWxsPSIjRkRGOEVFIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8IS0tIFRvcCBzcGVha2VyIG5vdGNoIC0tPgogICAgPHJlY3QgeD0iNzQiIHk9IjgiIHdpZHRoPSI0MCIgaGVpZ2h0PSI1IiByeD0iMi41IiBmaWxsPSIjMjMxRjIwIi8+CgogICAgPCEtLSBBcHAgVG9wIFBpbGwgLS0+CiAgICA8cmVjdCB4PSIyNiIgeT0iMzAiIHdpZHRoPSI2NCIgaGVpZ2h0PSIyMCIgcng9IjEwIiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgICA8Y2lyY2xlIGN4PSIxNTIiIGN5PSI0MCIgcj0iMTAiIGZpbGw9IiNGQ0UzOEEiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KCiAgICA8IS0tIEZsYXNoY2FyZCBpbnNpZGUgcGhvbmUgLS0+CiAgICA8cmVjdCB4PSIyNiIgeT0iNjIiIHdpZHRoPSIxMzYiIGhlaWdodD0iMTIyIiByeD0iMTQiIGZpbGw9IiNGRkZERjkiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjIiLz4KICAgIDxyZWN0IHg9IjM2IiB5PSI3MiIgd2lkdGg9IjExNiIgaGVpZ2h0PSIxNCIgcng9IjciIGZpbGw9IiNCOEUwRDIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KCiAgICA8IS0tIFN0eWxpemVkIENoaW5lc2UgVG9uZSBXYXZlIE1vdGlmcyAoNCB0b25lcykgaW5zaWRlIGNhcmQgLS0+CiAgICA8ZyBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgICAgPCEtLSBUb25lIDEgZmxhdCAtLT4KICAgICAgPGxpbmUgeDE9IjQyIiB5MT0iMTA4IiB4Mj0iNjQiIHkyPSIxMDgiLz4KICAgICAgPCEtLSBUb25lIDIgcmlzaW5nIC0tPgogICAgICA8bGluZSB4MT0iNzQiIHkxPSIxMTUiIHgyPSI5NCIgeTI9IjEwMSIvPgogICAgICA8IS0tIFRvbmUgMyBkaXBwaW5nIC0tPgogICAgICA8cG9seWxpbmUgcG9pbnRzPSIxMDMsMTA0IDExMywxMTYgMTIzLDEwMiIvPgogICAgICA8IS0tIFRvbmUgNCBmYWxsaW5nIC0tPgogICAgICA8bGluZSB4MT0iMTMxIiB5MT0iMTAxIiB4Mj0iMTQ3IiB5Mj0iMTE1Ii8+CiAgICA8L2c+CgogICAgPCEtLSBTdHlsaXplZCBmcmllbmRseSBIYW56aS1pbnNwaXJlZCBhYnN0cmFjdCBibG9ja3MgLS0+CiAgICA8cmVjdCB4PSI0NiIgeT0iMTMyIiB3aWR0aD0iOTYiIGhlaWdodD0iMTQiIHJ4PSI3IiBmaWxsPSIjRkNFMzhBIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgICA8cmVjdCB4PSI2NCIgeT0iMTU1IiB3aWR0aD0iNjAiIGhlaWdodD0iMTEiIHJ4PSI1LjUiIGZpbGw9IiNENkNDRjIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIxLjYiLz4KCiAgICA8IS0tIEJvdHRvbSBUaHVtYiBDVEEgYnV0dG9uIG9uIHBob25lIC0tPgogICAgPHJlY3QgeD0iMjYiIHk9IjE5OCIgd2lkdGg9IjEzNiIgaGVpZ2h0PSIzNiIgcng9IjE4IiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi4yIi8+CiAgICA8Y2lyY2xlIGN4PSI1MiIgY3k9IjIxNiIgcj0iNyIgZmlsbD0iI0ZERjhFRSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogICAgPGxpbmUgeDE9IjY4IiB5MT0iMjE2IiB4Mj0iMTM2IiB5Mj0iMjE2IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi44IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+CgogIDwhLS0gUmlnaHQ6IEN1dGUgU21pbGluZyBSZWQgUGFuZGEgU3R1ZHkgQnVkZHkgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDMyIDIzMCkiPgogICAgPCEtLSBUYWlsIC0tPgogICAgPHBhdGggZD0iTTk4IDExOCBDMTMyIDExNCAxNDIgODIgMTIyIDY4IEMxMDggNTggOTQgNzQgOTIgOTQiIGZpbGw9IiNGRkI1QTciIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KICAgIDxwYXRoIGQ9Ik0xMTIgNzIgQzEyMCA3NiAxMjIgODYgMTE2IDk0IiBzdHJva2U9IiNGREY4RUUiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CgogICAgPCEtLSBCb2R5IC0tPgogICAgPHBhdGggZD0iTTIyIDEzMiBDMjIgOTIgMzggNzggNjIgNzggQzg2IDc4IDEwMiA5MiAxMDIgMTMyIFoiIGZpbGw9IiNGRkI1QTciIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjYiLz4KICAgIDwhLS0gQmVsbHkgUGF0Y2ggLS0+CiAgICA8ZWxsaXBzZSBjeD0iNjIiIGN5PSIxMTQiIHJ4PSIyMiIgcnk9IjE2IiBmaWxsPSIjRkRGOEVFIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPCEtLSBZZWxsb3cgU2NhcmYgLS0+CiAgICA8cmVjdCB4PSIzNCIgeT0iNzYiIHdpZHRoPSI1NiIgaGVpZ2h0PSIxNCIgcng9IjciIGZpbGw9IiNGQ0UzOEEiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjIiLz4KICAgIDxyZWN0IHg9Ijc0IiB5PSI4NCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjI0IiByeD0iNiIgZmlsbD0iI0ZDRTM4QSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuMiIvPgoKICAgIDwhLS0gRWFycyAtLT4KICAgIDxjaXJjbGUgY3g9IjMwIiBjeT0iMjYiIHI9IjE2IiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjI2IiByPSI4IiBmaWxsPSIjRkRGOEVFIi8+CiAgICA8Y2lyY2xlIGN4PSI5NCIgY3k9IjI2IiByPSIxNiIgZmlsbD0iI0ZGQjVBNyIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNiIvPgogICAgPGNpcmNsZSBjeD0iOTQiIGN5PSIyNiIgcj0iOCIgZmlsbD0iI0ZERjhFRSIvPgoKICAgIDwhLS0gSGVhZCAtLT4KICAgIDxlbGxpcHNlIGN4PSI2MiIgY3k9IjQ4IiByeD0iNDAiIHJ5PSIzNCIgZmlsbD0iI0ZGQjVBNyIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNiIvPgogICAgPCEtLSBDcmVhbSBDaGVlayBNYXNrIC0tPgogICAgPGVsbGlwc2UgY3g9IjQ0IiBjeT0iNTYiIHJ4PSIxNCIgcnk9IjEwIiBmaWxsPSIjRkRGOEVFIi8+CiAgICA8ZWxsaXBzZSBjeD0iODAiIGN5PSI1NiIgcng9IjE0IiByeT0iMTAiIGZpbGw9IiNGREY4RUUiLz4KICAgIDxlbGxpcHNlIGN4PSI2MiIgY3k9IjYwIiByeD0iMTQiIHJ5PSIxMCIgZmlsbD0iI0ZERjhFRSIvPgogICAgPCEtLSBFeWVicm93cyAtLT4KICAgIDxjaXJjbGUgY3g9IjQ4IiBjeT0iMzQiIHI9IjQiIGZpbGw9IiNGREY4RUUiLz4KICAgIDxjaXJjbGUgY3g9Ijc2IiBjeT0iMzQiIHI9IjQiIGZpbGw9IiNGREY4RUUiLz4KICAgIDwhLS0gRXllcyAmIFNtaWxlIC0tPgogICAgPGNpcmNsZSBjeD0iNDgiIGN5PSI0OCIgcj0iMy40IiBmaWxsPSIjMjMxRjIwIi8+CiAgICA8Y2lyY2xlIGN4PSI3NiIgY3k9IjQ4IiByPSIzLjQiIGZpbGw9IiMyMzFGMjAiLz4KICAgIDxlbGxpcHNlIGN4PSI2MiIgY3k9IjU1IiByeD0iNC4yIiByeT0iMyIgZmlsbD0iIzIzMUYyMCIvPgogICAgPHBhdGggZD0iTTU1IDYxIFE2MiA2NyA2OSA2MSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CgogICAgPCEtLSBQYXdzIGhvbGRpbmcgdGlueSBtaW50IHBlbmNpbCAtLT4KICAgIDxlbGxpcHNlIGN4PSIzNiIgY3k9IjEwOCIgcng9IjExIiByeT0iOCIgZmlsbD0iIzIzMUYyMCIvPgogICAgPGVsbGlwc2UgY3g9Ijg4IiBjeT0iMTA4IiByeD0iMTEiIHJ5PSI4IiBmaWxsPSIjMjMxRjIwIi8+CiAgPC9nPgoKICA8IS0tIEZsb2F0aW5nIFNwZWVjaCBCdWJibGUgJiBSZXRybyBTcGFya2xlcyAtLT4KICA8Zz4KICAgIDxyZWN0IHg9IjQyMiIgeT0iMTMyIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjU0IiByeD0iMTYiIGZpbGw9IiNENkNDRjIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICAgIDxwYXRoIGQ9Ik00NDggMTg2IEw0NDAgMjAyIEw0NjIgMTg2IFoiIGZpbGw9IiNENkNDRjIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgIDwhLS0gQXVkaW8gd2F2ZSBiYXJzIGluc2lkZSBidWJibGUgLS0+CiAgICA8bGluZSB4MT0iNDQ0IiB5MT0iMTU5IiB4Mj0iNDQ0IiB5Mj0iMTU5IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iNDU4IiB5MT0iMTQ5IiB4Mj0iNDU4IiB5Mj0iMTY5IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iNDcyIiB5MT0iMTQzIiB4Mj0iNDcyIiB5Mj0iMTc1IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iNDg2IiB5MT0iMTQ5IiB4Mj0iNDg2IiB5Mj0iMTY5IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iNTAwIiB5MT0iMTU0IiB4Mj0iNTAwIiB5Mj0iMTY0IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iNTEyIiB5MT0iMTU5IiB4Mj0iNTEyIiB5Mj0iMTU5IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPC9nPgoKICA8IS0tIEZsb2F0aW5nIFJldHJvIFN0YXJzIC0tPgogIDxnIGZpbGw9IiNGQ0UzOEEiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyIj4KICAgIDxwYXRoIGQ9Ik0xODAgODYgTDE4NCA5NiBMMTk1IDEwMCBMMTg0IDEwNCBMMTgwIDExNCBMMTc2IDEwNCBMMTY1IDEwMCBMMTc2IDk2IFoiLz4KICAgIDxwYXRoIGQ9Ik00MzIgNzAgTDQzNSA3NyBMNDQyIDgwIEw0MzUgODMgTDQzMiA5MCBMNDI5IDgzIEw0MjIgODAgTDQyOSA3NyBaIiBmaWxsPSIjRkZCNUE3Ii8+CiAgICA8Y2lyY2xlIGN4PSI4MCIgY3k9IjE5MCIgcj0iNiIgZmlsbD0iI0I4RTBEMiIvPgogICAgPGNpcmNsZSBjeD0iNTY2IiBjeT0iMjYwIiByPSI3IiBmaWxsPSIjRDZDQ0YyIi8+CiAgPC9nPgo8L3N2Zz4K"
+              alt="Minh họa phong cách retro pastel về góc học tiếng Trung ấm áp trên điện thoại cho người mới bắt đầu"
+              class="hero-illustration"
+            />
+            <div class="hero-caption-strip">
+              <div class="hero-mini-hanzi">
+                <span class="cn-text">你好!</span>
+                <span>nǐ hǎo · Xin chào</span>
+              </div>
+              <button type="button" class="speak-btn" data-speak="你好" aria-label="Nghe phát âm Nǐ hǎo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beginner Pain-Point Relief -->
+    <section class="section" aria-labelledby="relief-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="eyebrow mint">✦ Gỡ rối cho người mới</span>
+          <h2 class="section-title" id="relief-heading">Chưa từng học chữ Hán? Không sao cả.</h2>
+          <p class="section-desc">
+            Người mới thường bỏ cuộc không phải vì tiếng Trung quá khó, mà vì bài học quá rối. Chúng mình sắp xếp lại mọi thứ gọn gàng từ đầu.
+          </p>
+        </div>
+
+        <div class="relief-grid">
+          <article class="relief-card">
+            <span class="relief-badge" aria-hidden="true">拼</span>
+            <h3>Bắt đầu từ Pinyin &amp; 4 thanh điệu</h3>
+            <p>Không nhồi chữ Hán ngay buổi đầu. Bạn làm quen cách đọc, ghép âm chuẩn và nghe mẫu chậm từng từ ngay trên điện thoại.</p>
+          </article>
+
+          <article class="relief-card">
+            <span class="relief-badge" aria-hidden="true">🎯</span>
+            <h3>Mỗi bài đúng 1 mục tiêu nhỏ</h3>
+            <p>Thay vì học thuộc lòng danh sách từ khô khan, mỗi bài giúp bạn làm được 1 việc thật: chào hỏi, hỏi giá, gọi trà sữa hay hỏi đường.</p>
+          </article>
+
+          <article class="relief-card">
+            <span class="relief-badge" aria-hidden="true">📱</span>
+            <h3>Thiết kế tối ưu cho 1 ngón cái</h3>
+            <p>Chữ Hán lớn, nút bấm rộng, thẻ bài gọn gàng, chuyển cấp độ mượt mà — không còn cảnh phải phóng to màn hình để tìm bài học.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Roadmap: HSK 1 → HSK 5 -->
+    <section class="section" id="lo-trinh" aria-labelledby="roadmap-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow peach">✦ Lộ trình học tập tăng dần</span>
+          <h2 class="section-title" id="roadmap-heading">Chia bài học theo mục tiêu từ HSK 1 đến HSK 5</h2>
+          <p class="section-desc">
+            Chạm chọn từng cấp độ bên dưới để xem mục tiêu giao tiếp, lượng từ vựng và danh sách bài học mẫu theo từng bước tiến bộ.
+          </p>
+        </div>
+
+        <div class="roadmap-banner-wrap">
+          <img
+            id="journey-img"
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NjAgMzAwIiBmaWxsPSJub25lIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJqb3VybmV5RG90cyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPGNpcmNsZSBjeD0iMyIgY3k9IjMiIHI9IjEuMiIgZmlsbD0iIzIzMUYyMCIgb3BhY2l0eT0iMC4wNyIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIC0tPgogIDxyZWN0IHdpZHRoPSI5NjAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRkRGOEVFIi8+CiAgPHJlY3Qgd2lkdGg9Ijk2MCIgaGVpZ2h0PSIzMDAiIGZpbGw9InVybCgjam91cm5leURvdHMpIi8+CgogIDwhLS0gV2FybSBTdW4gJiBQYXN0ZWwgQ2xvdWRzIC0tPgogIDxjaXJjbGUgY3g9Ijg0OCIgY3k9IjcwIiByPSI0MCIgZmlsbD0iI0ZDRTM4QSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNCIvPgogIDxnIGZpbGw9IiNGRkZERjkiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTTg0IDc0IEgxNzAgQzE3OCA3NCAxODQgNjggMTg0IDYwIEMxODQgNTIgMTc4IDQ2IDE3MCA0NiBDMTY2IDM0IDE1NSAyNiAxNDIgMjYgQzEyOCAyNiAxMTcgMzYgMTE1IDQ4IEMxMDUgNDggOTcgNTYgOTcgNjUgWiIvPgogICAgPHBhdGggZD0iTTQ0NiA2NiBINTIyIEM1MjkgNjYgNTM0IDYxIDUzNCA1NCBDNTM0IDQ3IDUyOCA0MiA1MjEgNDIgQzUxOCAzMiA1MDggMjYgNDk3IDI2IEM0ODUgMjYgNDc2IDM0IDQ3NCA0NCBDNDY1IDQ0IDQ1OCA1MCA0NTggNTggWiIvPgogIDwvZz4KCiAgPCEtLSBMYXllcmVkIFJvbGxpbmcgUGFzdGVsIEhpbGxzIC0tPgogIDxwYXRoIGQ9Ik0wIDI0NSBRMTcwIDE1NSAzNjAgMjEyIFQ3MzAgMTY1IFQ5NjAgMTIwIFYzMDAgSDAgWiIgZmlsbD0iI0Q2Q0NGMiIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNCIvPgogIDxwYXRoIGQ9Ik0wIDI2MCBRMjIwIDIwNSA0MjAgMjQyIFQ4MjAgMTg1IFQ5NjAgMTc1IFYzMDAgSDAgWiIgZmlsbD0iI0I4RTBEMiIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNCIvPgogIDxwYXRoIGQ9Ik0wIDI4MiBRMjgwIDI0OCA1MjAgMjcyIFQ5NjAgMjMyIFYzMDAgSDAgWiIgZmlsbD0iI0ZGRkRGOSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuMiIvPgoKICA8IS0tIEFzY2VuZGluZyBXaW5kaW5nIExlYXJuaW5nIFBhdGggLS0+CiAgPHBhdGgKICAgIGQ9Ik03OCAyNDIgQzE4MCAyMzgsIDIxMCAxOTgsIDI4NiAxOTYgQzM2MiAxOTQsIDQxMiAxNjIsIDQ4MCAxNTggQzU1MiAxNTQsIDYwMCAxMjYsIDY3NiAxMjIgQzc0OCAxMTgsIDc5NiA4NiwgODY0IDg0IgogICAgc3Ryb2tlPSIjMjMxRjIwIgogICAgc3Ryb2tlLXdpZHRoPSIxOCIKICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgIGZpbGw9Im5vbmUiCiAgLz4KICA8cGF0aAogICAgZD0iTTc4IDI0MiBDMTgwIDIzOCwgMjEwIDE5OCwgMjg2IDE5NiBDMzYyIDE5NCwgNDEyIDE2MiwgNDgwIDE1OCBDNTUyIDE1NCwgNjAwIDEyNiwgNjc2IDEyMiBDNzQ4IDExOCwgNzk2IDg2LCA4NjQgODQiCiAgICBzdHJva2U9IiNGREY4RUUiCiAgICBzdHJva2Utd2lkdGg9IjEzIgogICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogICAgZmlsbD0ibm9uZSIKICAvPgogIDxwYXRoCiAgICBkPSJNNzggMjQyIEMxODAgMjM4LCAyMTAgMTk4LCAyODYgMTk2IEMzNjIgMTk0LCA0MTIgMTYyLCA0ODAgMTU4IEM1NTIgMTU0LCA2MDAgMTI2LCA2NzYgMTIyIEM3NDggMTE4LCA3OTYgODYsIDg2NCA4NCIKICAgIHN0cm9rZT0iI0ZGQjVBNyIKICAgIHN0cm9rZS13aWR0aD0iMyIKICAgIHN0cm9rZS1kYXNoYXJyYXk9IjggOCIKICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgIGZpbGw9Im5vbmUiCiAgLz4KCiAgPCEtLSA1IFJldHJvIE1pbGVzdG9uZSBQb3N0YWdlLVN0YW1wIE1hcmtlcnMgKEhTSyAxIHRvIEhTSyA1KSAtLT4KICA8IS0tIFN0YWdlIDE6IFBlYWNoIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDg2IDE5OCkiPgogICAgPGxpbmUgeDE9IjIyIiB5MT0iNDIiIHgyPSIyMiIgeTI9IjU0IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgPHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTIiIGZpbGw9IiMyMzFGMjAiLz4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgcng9IjEyIiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8dGV4dCB4PSIyMiIgeT0iMjkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTcGFjZSBNb25vLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMyMzFGMjAiPjE8L3RleHQ+CiAgPC9nPgoKICA8IS0tIFN0YWdlIDI6IE1pbnQgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjY0IDE1MCkiPgogICAgPGxpbmUgeDE9IjIyIiB5MT0iNDIiIHgyPSIyMiIgeTI9IjU0IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgPHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTIiIGZpbGw9IiMyMzFGMjAiLz4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgcng9IjEyIiBmaWxsPSIjQjhFMEQyIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8dGV4dCB4PSIyMiIgeT0iMjkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTcGFjZSBNb25vLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMyMzFGMjAiPjI8L3RleHQ+CiAgPC9nPgoKICA8IS0tIFN0YWdlIDM6IEJ1dHRlciAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NTggMTEyKSI+CiAgICA8bGluZSB4MT0iMjIiIHkxPSI0MiIgeDI9IjIyIiB5Mj0iNTQiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgICA8cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSIxMiIgZmlsbD0iIzIzMUYyMCIvPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTIiIGZpbGw9IiNGQ0UzOEEiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICAgIDx0ZXh0IHg9IjIyIiB5PSIyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlNwYWNlIE1vbm8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzIzMUYyMCI+MzwvdGV4dD4KICA8L2c+CgogIDwhLS0gU3RhZ2UgNDogTGF2ZW5kZXIgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjUyIDc2KSI+CiAgICA8bGluZSB4MT0iMjIiIHkxPSI0MiIgeDI9IjIyIiB5Mj0iNTQiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgICA8cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSIxMiIgZmlsbD0iIzIzMUYyMCIvPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTIiIGZpbGw9IiNENkNDRjIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICAgIDx0ZXh0IHg9IjIyIiB5PSIyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlNwYWNlIE1vbm8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzIzMUYyMCI+NDwvdGV4dD4KICA8L2c+CgogIDwhLS0gU3RhZ2UgNTogU2t5ICsgU3RhciBGbGFnIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgzOCAzOCkiPgogICAgPGxpbmUgeDE9IjIyIiB5MT0iNDIiIHgyPSIyMiIgeTI9IjU0IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgPHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTIiIGZpbGw9IiMyMzFGMjAiLz4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgcng9IjEyIiBmaWxsPSIjQjhEOEY4IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8dGV4dCB4PSIyMiIgeT0iMjkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTcGFjZSBNb25vLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMyMzFGMjAiPjU8L3RleHQ+CiAgICA8IS0tIExpdHRsZSBzdGFyIGNyb3duIC0tPgogICAgPHBhdGggZD0iTTIyIC0xOCBMMjUgLTEwIEwzMyAtNyBMMjUgLTQgTDIyIDQgTDE5IC00IEwxMSAtNyBMMTkgLTEwIFoiIGZpbGw9IiNGQ0UzOEEiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8L2c+CgogIDwhLS0gQ3V0ZSBNaW5pIFJlZCBQYW5kYSBUcmF2ZWxlciBvbiB0aGUgUGF0aCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzQgMTc2KSI+CiAgICA8IS0tIFllbGxvdyBTYXRjaGVsIC0tPgogICAgPHJlY3QgeD0iMzIiIHk9IjI2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSI0IiBmaWxsPSIjRkNFMzhBIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPCEtLSBCb2R5IC0tPgogICAgPGVsbGlwc2UgY3g9IjIyIiBjeT0iMzYiIHJ4PSIxNCIgcnk9IjEyIiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi4yIi8+CiAgICA8IS0tIEVhcnMgLS0+CiAgICA8Y2lyY2xlIGN4PSIxMCIgY3k9IjgiIHI9IjciIGZpbGw9IiNGRkI1QTciIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjIiLz4KICAgIDxjaXJjbGUgY3g9IjM0IiBjeT0iOCIgcj0iNyIgZmlsbD0iI0ZGQjVBNyIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuMiIvPgogICAgPCEtLSBIZWFkIC0tPgogICAgPGVsbGlwc2UgY3g9IjIyIiBjeT0iMTgiIHJ4PSIxNyIgcnk9IjE0IiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi4yIi8+CiAgICA8ZWxsaXBzZSBjeD0iMjIiIGN5PSIyMiIgcng9IjExIiByeT0iNiIgZmlsbD0iI0ZERjhFRSIvPgogICAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNyIgcj0iMiIgZmlsbD0iIzIzMUYyMCIvPgogICAgPGNpcmNsZSBjeD0iMjgiIGN5PSIxNyIgcj0iMiIgZmlsbD0iIzIzMUYyMCIvPgogICAgPHBhdGggZD0iTTE5IDIzIFEyMiAyNiAyNSAyMyIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPC9nPgoKICA8IS0tIFBhc3RlbCBMYW50ZXJuIEFjY2VudHMgJiBUcmVlcyAtLT4KICA8ZyBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMiI+CiAgICA8Y2lyY2xlIGN4PSIzODYiIGN5PSIyMjYiIHI9IjE0IiBmaWxsPSIjRkZCNUE3Ii8+CiAgICA8bGluZSB4MT0iMzg2IiB5MT0iMjQwIiB4Mj0iMzg2IiB5Mj0iMjU4Ii8+CiAgICA8Y2lyY2xlIGN4PSI1NzgiIGN5PSIxOTYiIHI9IjE2IiBmaWxsPSIjRkNFMzhBIi8+CiAgICA8bGluZSB4MT0iNTc4IiB5MT0iMjEyIiB4Mj0iNTc4IiB5Mj0iMjMyIi8+CiAgICA8Y2lyY2xlIGN4PSI3NzYiIGN5PSIxNjYiIHI9IjE0IiBmaWxsPSIjRkZCNUE3Ii8+CiAgICA8bGluZSB4MT0iNzc2IiB5MT0iMTgwIiB4Mj0iNzc2IiB5Mj0iMTk4Ii8+CiAgPC9nPgoKICA8IS0tIERlY29yYXRpdmUgU3BhcmtsZXMgLS0+CiAgPGcgZmlsbD0iI0ZDRTM4QSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjEuOCI+CiAgICA8cGF0aCBkPSJNMzEyIDY2IEwzMTUgNzMgTDMyMiA3NiBMMzE1IDc5IEwzMTIgODYgTDMwOSA3OSBMMzAyIDc2IEwzMDkgNzMgWiIvPgogICAgPHBhdGggZD0iTTYxOCA0MiBMNjIwIDQ4IEw2MjYgNTAgTDYyMCA1MiBMNjE4IDU4IEw2MTYgNTIgTDYxMCA1MCBMNjE2IDQ4IFoiIGZpbGw9IiNGRkI1QTciLz4KICA8L2c+Cjwvc3ZnPgo="
+            alt="Minh họa hành trình học tiếng Trung vượt qua 5 chặng từ HSK 1 đến HSK 5 theo phong cách retro pastel"
+            class="roadmap-banner-img"
+          />
+        </div>
+
+        <!-- Thumb-friendly Horizontal Level Selector -->
+        <div class="level-tabs-scroller" id="level-tabs" role="tablist" aria-label="Chọn cấp độ HSK"></div>
+
+        <!-- Visual Progressive Meter -->
+        <div class="progress-strip" aria-live="polite">
+          <span class="progress-label" id="progress-stage-label">Chặng 1 / 5</span>
+          <div class="progress-track" role="progressbar" id="progress-bar-role" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <span class="progress-label" id="progress-vocab-label">150 từ</span>
+        </div>
+
+        <!-- Active Level Detail & Accordion Lessons -->
+        <div class="level-panel" id="level-panel" role="tabpanel">
+          <div class="level-panel-top">
+            <div class="level-meta-row" id="level-meta-row"></div>
+            <h3 class="level-panel-title" id="level-title"></h3>
+            <p class="level-goal-summary" id="level-goal-summary"></p>
+
+            <div class="outcomes-box">
+              <p class="outcomes-box-title">Sau chặng này bạn làm được gì?</p>
+              <ul class="outcomes-list" id="level-outcomes"></ul>
+            </div>
+          </div>
+
+          <div class="lessons-container">
+            <div class="lessons-header">
+              <h4>Các bài học theo mục tiêu tăng dần</h4>
+              <span class="completed-badge" id="level-completed-badge">Đã thử: 0/4 bài</span>
+            </div>
+            <div class="lesson-list" id="lesson-list"></div>
+          </div>
+
+          <div class="level-panel-footer">
+            <button type="button" class="btn btn-sm" id="prev-level-btn">← Cấp trước</button>
+            <a href="#dang-ky-lo-trinh" class="btn btn-primary btn-sm" id="select-level-cta">Chọn lộ trình HSK 1</a>
+            <button type="button" class="btn btn-sm" id="next-level-btn">Lên HSK 2 →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Mini Flashcard Tryout -->
+    <section class="section try-section" id="hoc-thu" aria-labelledby="try-heading">
+      <div class="container try-layout">
+        <div>
+          <span class="eyebrow">✦ Học thử 1 phút · HSK 1 Bài 01</span>
+          <h2 class="section-title" id="try-heading">Thử lật 5 thẻ đầu tiên ngay bây giờ</h2>
+          <p class="section-desc" style="margin-bottom: 18px;">
+            Chạm vào thẻ để lật xem phiên âm Pinyin, mẹo nhớ thanh điệu và ví dụ giao tiếp thật. Nhấn biểu tượng loa để nghe phát âm tiếng Trung chuẩn.
+          </p>
+          <div class="outcomes-box" style="margin-bottom: 16px;">
+            <p class="outcomes-box-title">Tiến độ học thử của bạn</p>
+            <p style="margin: 0; font-size: 0.94rem;">
+              <strong id="fc-learned-summary">Đã nhớ 0 / 5 thẻ đầu tiên</strong> — chỉ mất chưa tới 1 phút để làm quen câu chào tiếng Trung!
+            </p>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <button type="button" class="btn btn-mint btn-sm" id="fc-mark-learned">✓ Đánh dấu đã nhớ thẻ này</button>
+            <button type="button" class="btn btn-sm" id="fc-flip-btn">↻ Lật thẻ</button>
+          </div>
+        </div>
+
+        <div class="flashcard-stage">
+          <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Thẻ học tiếng Trung, chạm để lật xem Pinyin và nghĩa">
+            <div class="flashcard-face flashcard-front">
+              <div class="fc-top">
+                <span class="fc-tag" id="fc-tag-front">HSK 1 · Bài 01</span>
+                <button type="button" class="speak-btn" id="fc-speak-front" aria-label="Nghe phát âm từ này">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="fc-front-center">
+                <div class="fc-hanzi-big" id="fc-hanzi">你好</div>
+                <span class="fc-hint">👆 Chạm vào thẻ để lật xem Pinyin &amp; nghĩa</span>
+              </div>
+              <div style="text-align: center; font-size: 0.8rem; color: var(--ink-soft);">
+                Thẻ Retro Flashcard · Nhẹ mắt, dễ nhớ
+              </div>
+            </div>
+
+            <div class="flashcard-face flashcard-back">
+              <div class="fc-top">
+                <span class="fc-tag" id="fc-tag-back">HSK 1 · Bài 01</span>
+                <button type="button" class="speak-btn" id="fc-speak-back" aria-label="Nghe phát âm ví dụ">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="fc-back-content">
+                <div class="fc-pinyin-row">
+                  <span class="fc-pinyin-big" id="fc-pinyin">nǐ hǎo</span>
+                  <span class="fc-meaning-big" id="fc-meaning">Xin chào</span>
+                </div>
+                <div class="fc-tone-note" id="fc-tone-note"></div>
+                <div class="fc-example-box">
+                  <span class="cn-text" id="fc-ex-hanzi"></span>
+                  <div id="fc-ex-pinyin"></div>
+                  <div id="fc-ex-vi"></div>
+                </div>
+              </div>
+              <div style="font-size: 0.78rem; color: var(--ink-soft); text-align: right;">
+                Chạm lại để úp thẻ ↺
+              </div>
+            </div>
+          </div>
+
+          <div class="fc-controls">
+            <button type="button" class="btn btn-sm" id="fc-prev">← Thẻ trước</button>
+            <span class="fc-counter" id="fc-counter">1 / 5</span>
+            <button type="button" class="btn btn-butter btn-sm" id="fc-next">Thẻ tiếp →</button>
+          </div>
+          <div class="fc-dots" id="fc-dots" aria-label="Chọn nhanh thẻ học thử"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works (15 Min Daily Method) -->
+    <section class="section" id="cach-hoc" aria-labelledby="method-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="eyebrow lavender">✦ Nhịp học nhẹ nhàng</span>
+          <h2 class="section-title" id="method-heading">Chỉ 3 bước, mỗi ngày 15 phút đều đặn</h2>
+          <p class="section-desc">
+            Không cần ngồi hàng giờ trước máy tính. Tận dụng 15 phút nghỉ trưa hoặc trước khi ngủ trên điện thoại để tiến dần từ HSK 1 lên HSK 5.
+          </p>
+        </div>
+
+        <div class="method-grid">
+          <div class="method-illustration-card">
+            <img
+              id="practice-img"
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDgwIiBmaWxsPSJub25lIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJraXREb3RzIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIzIiBjeT0iMyIgcj0iMS4yIiBmaWxsPSIjMjMxRjIwIiBvcGFjaXR5PSIwLjA4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgoKICA8IS0tIEJhY2tncm91bmQgLS0+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0ODAiIGZpbGw9IiNGREY4RUUiLz4KICA8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQ4MCIgZmlsbD0idXJsKCNraXREb3RzKSIvPgoKICA8IS0tIENvenkgRGVzayBNYXQgLS0+CiAgPHJlY3QgeD0iNDQiIHk9IjQ4IiB3aWR0aD0iNTUyIiBoZWlnaHQ9IjM4NCIgcng9IjI4IiBmaWxsPSIjRkZGREY5IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi42Ii8+CiAgPHJlY3QgeD0iNjAiIHk9IjY0IiB3aWR0aD0iNTIwIiBoZWlnaHQ9IjM1MiIgcng9IjIwIiBmaWxsPSIjRURGOUY1IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz4KCiAgPCEtLSAxLiBWaW50YWdlIFJldHJvIDE1LU1pbnV0ZSBBbGFybSBDbG9jayAoVG9wIExlZnQpIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDk2IDEwNCkiPgogICAgPCEtLSBCZWxscyAtLT4KICAgIDxjaXJjbGUgY3g9IjI4IiBjeT0iMjIiIHI9IjIyIiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSIxMzIiIGN5PSIyMiIgcj0iMjIiIGZpbGw9IiNGRkI1QTciIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjYiLz4KICAgIDxwYXRoIGQ9Ik01NiAxMiBRODAgLTYgMTA0IDEyIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8IS0tIExlZ3MgLS0+CiAgICA8bGluZSB4MT0iMzYiIHkxPSIxNTgiIHgyPSIyMiIgeTI9IjE3OCIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iMTI0IiB5MT0iMTU4IiB4Mj0iMTM4IiB5Mj0iMTc4IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gU2hhZG93IC0tPgogICAgPGNpcmNsZSBjeD0iODUiIGN5PSI5OCIgcj0iNzAiIGZpbGw9IiMyMzFGMjAiLz4KICAgIDwhLS0gQ2xvY2sgT3V0ZXIgUmluZyAtLT4KICAgIDxjaXJjbGUgY3g9IjgwIiBjeT0iOTIiIHI9IjcwIiBmaWxsPSIjRkNFMzhBIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi44Ii8+CiAgICA8IS0tIENsb2NrIEZhY2UgLS0+CiAgICA8Y2lyY2xlIGN4PSI4MCIgY3k9IjkyIiByPSI1NCIgZmlsbD0iI0ZGRkRGOSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNCIvPgogICAgPCEtLSAxNS1NaW51dGUgTWludCBIaWdobGlnaHQgV2VkZ2UgKDEyIHRvIDMgbydjbG9jaykgLS0+CiAgICA8cGF0aCBkPSJNODAgOTIgTDgwIDQyIEE1MCA1MCAwIDAgMSAxMzAgOTIgWiIgZmlsbD0iI0I4RTBEMiIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDwhLS0gVGljayBNYXJrcyAtLT4KICAgIDxsaW5lIHgxPSI4MCIgeTE9IjQ1IiB4Mj0iODAiIHkyPSI1MyIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iMTI3IiB5MT0iOTIiIHgyPSIxMTkiIHkyPSI5MiIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iODAiIHkxPSIxMzkiIHgyPSI4MCIgeTI9IjEzMSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iMzMiIHkxPSI5MiIgeDI9IjQxIiB5Mj0iOTIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPCEtLSBDbG9jayBIYW5kcyAtLT4KICAgIDxsaW5lIHgxPSI4MCIgeTE9IjkyIiB4Mj0iODAiIHkyPSI1OCIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjMuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iODAiIHkxPSI5MiIgeDI9IjExMiIgeTI9IjkyIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMy4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxjaXJjbGUgY3g9IjgwIiBjeT0iOTIiIHI9IjYiIGZpbGw9IiNGRkI1QTciIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPC9nPgoKICA8IS0tIDIuIEZhbiBvZiBSZXRybyBQYXN0ZWwgRmxhc2hjYXJkcyAoVG9wIFJpZ2h0KSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMjIgMTA0KSI+CiAgICA8IS0tIEJhY2sgQ2FyZCAoTGF2ZW5kZXIpIC0tPgogICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoOCA5MCA5MCkiPgogICAgICA8cmVjdCB4PSIzNCIgeT0iMTYiIHdpZHRoPSIxNjYiIGhlaWdodD0iMTIyIiByeD0iMTYiIGZpbGw9IiNENkNDRjIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjYiLz4KICAgIDwvZz4KICAgIDwhLS0gTWlkZGxlIENhcmQgKFBlYWNoKSAtLT4KICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKC01IDkwIDkwKSI+CiAgICAgIDxyZWN0IHg9IjE4IiB5PSIyNCIgd2lkdGg9IjE2NiIgaGVpZ2h0PSIxMjIiIHJ4PSIxNiIgZmlsbD0iI0ZGQjVBNyIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuNiIvPgogICAgPC9nPgogICAgPCEtLSBGcm9udCBDYXJkIChDcmVhbSkgLS0+CiAgICA8cmVjdCB4PSI2IiB5PSI0MiIgd2lkdGg9IjE3NCIgaGVpZ2h0PSIxMjYiIHJ4PSIxNiIgZmlsbD0iIzIzMUYyMCIvPgogICAgPHJlY3QgeD0iMCIgeT0iMzYiIHdpZHRoPSIxNzQiIGhlaWdodD0iMTI2IiByeD0iMTYiIGZpbGw9IiNGRkZERjkiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjYiLz4KICAgIDxyZWN0IHg9IjE0IiB5PSI1MCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjE4IiByeD0iOSIgZmlsbD0iI0ZDRTM4QSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogICAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iNTkiIHI9IjkiIGZpbGw9IiNCOEUwRDIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICAgIDwhLS0gQ2FyZCBDb250ZW50IExpbmVzIC0tPgogICAgPHJlY3QgeD0iMzYiIHk9Ijg0IiB3aWR0aD0iMTAyIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI0ZGQjVBNyIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogICAgPHJlY3QgeD0iNTIiIHk9IjExMiIgd2lkdGg9IjcwIiBoZWlnaHQ9IjEyIiByeD0iNiIgZmlsbD0iI0I4RDhGOCIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjEuNiIvPgogICAgPGxpbmUgeDE9IjM2IiB5MT0iMTQyIiB4Mj0iMTM4IiB5Mj0iMTQyIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+CiAgPC9nPgoKICA8IS0tIDMuIFJldHJvIFJvdW5kZWQgSGVhZHBob25lcyAmIFNvdW5kIFdhdmVzIChCb3R0b20gTGVmdCkgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTE2IDI5NikiPgogICAgPCEtLSBIZWFkYmFuZCAtLT4KICAgIDxwYXRoIGQ9Ik0yNiA3OCBDMjYgMTYgMTQ0IDE2IDE0NCA3OCIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjE0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik0yNiA3OCBDMjYgMTYgMTQ0IDE2IDE0NCA3OCIgc3Ryb2tlPSIjRDZDQ0YyIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPgogICAgPCEtLSBMZWZ0IEVhcmN1cCAtLT4KICAgIDxyZWN0IHg9IjEyIiB5PSI1NiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjU0IiByeD0iMTQiIGZpbGw9IiNCOEQ4RjgiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjYiLz4KICAgIDxyZWN0IHg9IjM2IiB5PSI2NCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjM4IiByeD0iNSIgZmlsbD0iI0ZDRTM4QSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDwhLS0gUmlnaHQgRWFyY3VwIC0tPgogICAgPHJlY3QgeD0iMTI2IiB5PSI1NiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjU0IiByeD0iMTQiIGZpbGw9IiNCOEQ4RjgiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjYiLz4KICAgIDxyZWN0IHg9IjEyNCIgeT0iNjQiIHdpZHRoPSIxMCIgaGVpZ2h0PSIzOCIgcng9IjUiIGZpbGw9IiNGQ0UzOEEiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8IS0tIFNvdW5kIFdhdmUgRG9vZGxlcyAtLT4KICAgIDxwYXRoIGQ9Ik02OCA3OCBRODUgNjAgMTAyIDc4IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik03NCA5MCBRODUgNzggOTYgOTAiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPgogICAgPGNpcmNsZSBjeD0iODUiIGN5PSI5OSIgcj0iMy41IiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgPC9nPgoKICA8IS0tIDQuIEN1dGUgUG90dGVkIEx1Y2t5IEJhbWJvbyBQbGFudCAoQm90dG9tIFJpZ2h0KSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzODQgMjgyKSI+CiAgICA8IS0tIEJhbWJvbyBTdGFsa3MgLS0+CiAgICA8cmVjdCB4PSI0NiIgeT0iMTQiIHdpZHRoPSIxMiIgaGVpZ2h0PSI2NiIgcng9IjUiIGZpbGw9IiNCOEUwRDIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICAgIDxsaW5lIHgxPSI0NiIgeTE9IjM4IiB4Mj0iNTgiIHkyPSIzOCIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0NiIgeTE9IjYwIiB4Mj0iNTgiIHkyPSI2MCIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIiLz4KCiAgICA8cmVjdCB4PSI2NiIgeT0iMjgiIHdpZHRoPSIxMiIgaGVpZ2h0PSI1MiIgcng9IjUiIGZpbGw9IiNCOEUwRDIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICAgIDxsaW5lIHgxPSI2NiIgeTE9IjUyIiB4Mj0iNzgiIHkyPSI1MiIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIiLz4KCiAgICA8IS0tIExlYXZlcyAtLT4KICAgIDxwYXRoIGQ9Ik00NiAyOCBDMjAgMTggMTQgMzQgMzIgNDIgQzQwIDQ1IDQ2IDM4IDQ2IDI4IFoiIGZpbGw9IiNCOEUwRDIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjIiLz4KICAgIDxwYXRoIGQ9Ik01OCAyNCBDODQgMTAgOTIgMjYgNzQgMzYgQzY2IDQwIDU4IDM0IDU4IDI0IFoiIGZpbGw9IiNCOEUwRDIiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjIiLz4KICAgIDxwYXRoIGQ9Ik03OCA0NCBDMTAyIDM2IDEwNiA1MCA5MCA1OCBDODIgNjEgNzggNTQgNzggNDQgWiIgZmlsbD0iI0I4RTBEMiIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIuMiIvPgoKICAgIDwhLS0gQ2VyYW1pYyBTdHJpcGVkIFBvdCAtLT4KICAgIDxwYXRoIGQ9Ik0zMCA3NiBIOTQgTDg2IDEyNiBDODUgMTMxIDgwIDEzNCA3NSAxMzQgSDQ5IEM0NCAxMzQgMzkgMTMxIDM4IDEyNiBaIiBmaWxsPSIjRkZCNUE3IiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iMi42Ii8+CiAgICA8cmVjdCB4PSIyNCIgeT0iNjgiIHdpZHRoPSI3NiIgaGVpZ2h0PSIxNCIgcng9IjciIGZpbGw9IiNGQ0UzOEEiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICAgIDwhLS0gQ3V0ZSBmYWNlIG9uIHBvdCAtLT4KICAgIDxjaXJjbGUgY3g9IjUzIiBjeT0iMTAyIiByPSIyLjQiIGZpbGw9IiMyMzFGMjAiLz4KICAgIDxjaXJjbGUgY3g9IjcxIiBjeT0iMTAyIiByPSIyLjQiIGZpbGw9IiMyMzFGMjAiLz4KICAgIDxwYXRoIGQ9Ik01OCAxMDggUTYyIDExMiA2NiAxMDgiIHN0cm9rZT0iIzIzMUYyMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+CgogIDwhLS0gRmxvYXRpbmcgU3BhcmtsZXMgLS0+CiAgPGcgZmlsbD0iI0ZDRTM4QSIgc3Ryb2tlPSIjMjMxRjIwIiBzdHJva2Utd2lkdGg9IjIiPgogICAgPHBhdGggZD0iTTI5NCA5NCBMMjk3IDEwMiBMMzA1IDEwNSBMMjk3IDEwOCBMMjk0IDExNiBMMjkxIDEwOCBMMjgzIDEwNSBMMjkxIDEwMiBaIi8+CiAgICA8cGF0aCBkPSJNNTQyIDI5MiBMNTQ1IDI5OSBMNTUyIDMwMiBMNTQ1IDMwNSBMNTQyIDMxMiBMNTM5IDMwNSBMNTMyIDMwMiBMNTM5IDI5OSBaIiBmaWxsPSIjRkZCNUE3Ii8+CiAgICA8Y2lyY2xlIGN4PSIzMTYiIGN5PSIzNjgiIHI9IjYiIGZpbGw9IiNENkNDRjIiLz4KICA8L2c+Cjwvc3ZnPgo="
+              alt="Minh họa bộ công cụ học tiếng Trung 15 phút mỗi ngày gồm đồng hồ retro, thẻ flashcard và tai nghe phong cách pastel"
+            />
+          </div>
+
+          <div class="steps-stack">
+            <article class="step-card">
+              <div class="step-num-stamp">01</div>
+              <div>
+                <h3>Chọn đúng điểm xuất phát của bạn</h3>
+                <p>Chưa biết gì? Bắt đầu ngay từ HSK 1 – Bài 01 Pinyin. Đã biết giao tiếp cơ bản? Nhảy thẳng sang HSK 2 hoặc HSK 3 mà không tốn thời gian.</p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num-stamp">02</div>
+              <div>
+                <h3>Học bài ngắn theo tình huống thật</h3>
+                <p>Mỗi bài gọn trong 10–15 phút gồm 3–5 mẫu câu cốt lõi, mẹo nhớ chữ Hán và nút nghe phát âm chuẩn ngay trên màn hình dọc.</p>
+              </div>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num-stamp">03</div>
+              <div>
+                <h3>Lật flashcard ôn nhanh &amp; lên cấp</h3>
+                <p>Cuối mỗi bài có bộ thẻ lật ngắn giúp ghi nhớ tự nhiên. Hoàn thành mục tiêu từng chặng là bạn sẵn sàng mở khóa cấp HSK tiếp theo.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="hoi-dap" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="eyebrow">✦ Giải đáp nhanh</span>
+          <h2 class="section-title" id="faq-heading">Câu hỏi thường gặp cho người mới</h2>
+        </div>
+        <div class="faq-list" id="faq-list"></div>
+      </div>
+    </section>
+
+    <!-- Final CTA & Personal 7-Day Starter Plan -->
+    <section class="section" id="dang-ky-lo-trinh" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-card">
+          <span class="eyebrow mint">✦ Bắt đầu miễn phí ngay hôm nay</span>
+          <h2 class="section-title" id="cta-heading">Bạn muốn bắt đầu từ mục tiêu nào?</h2>
+          <p class="section-desc" style="max-width: 560px; margin-inline: auto;">
+            Chọn trình độ hiện tại và nhập tên của bạn để xem ngay gợi ý lịch học 7 ngày đầu tiên gọn nhẹ trên điện thoại.
+          </p>
+
+          <div class="goal-picker" id="goal-picker" role="radiogroup" aria-label="Chọn điểm xuất phát">
+            <button type="button" class="goal-option is-selected" data-goal="hsk1">🌱 Chưa biết gì (HSK 1)</button>
+            <button type="button" class="goal-option" data-goal="hsk2">💬 Biết chào hỏi cơ bản (HSK 2)</button>
+            <button type="button" class="goal-option" data-goal="hsk3">✈️ Muốn tự tin du lịch (HSK 3)</button>
+            <button type="button" class="goal-option" data-goal="hsk4">💼 Dùng trong công việc (HSK 4–5)</button>
+          </div>
+
+          <form class="cta-form" id="starter-plan-form">
+            <label for="learner-name" class="sr-only">Tên của bạn</label>
+            <input
+              type="text"
+              id="learner-name"
+              class="cta-input"
+              placeholder="Nhập tên của bạn (VD: Minh Anh)"
+              maxlength="40"
+              required
+            />
+            <button type="submit" class="btn btn-primary">Tạo lịch học 7 ngày →</button>
+          </form>
+
+          <div class="plan-result" id="plan-result" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Minimal Retro Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand" style="font-size: 1.05rem;">
+        <svg class="brand-stamp" style="width: 30px; height: 30px;" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="38" height="38" rx="11" fill="#FFB5A7" stroke="#231F20" stroke-width="2.5"/>
+          <circle cx="22" cy="18" r="6" fill="#FCE38A" stroke="#231F20" stroke-width="2"/>
+          <path d="M13 30C15.5 25.5 18.5 24 22 24C25.5 24 28.5 25.5 31 30" fill="#B8E0D2" stroke="#231F20" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Nihao Pastel</span>
+      </div>
+      <p style="margin: 0;">Lộ trình học tiếng Trung từ số 0 đến HSK 5 · Thiết kế mobile-first phong cách retro pastel.</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Bottom Quick Bar -->
+  <nav class="mobile-bottom-bar" aria-label="Truy cập nhanh di động">
+    <a href="#lo-trinh" class="bottom-bar-link">
+      <span aria-hidden="true">🗺️</span>
+      <span>HSK 1–5</span>
+    </a>
+    <a href="#hoc-thu" class="bottom-bar-link">
+      <span aria-hidden="true">🃏</span>
+      <span>Học thử</span>
+    </a>
+    <a href="#dang-ky-lo-trinh" class="bottom-bar-link is-primary">
+      <span aria-hidden="true">✨</span>
+      <span>Lịch học</span>
+    </a>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+// Dữ liệu lộ trình học tiếng Trung theo mục tiêu tăng dần từ HSK 1 đến HSK 5
+// Thiết kế riêng cho người mới bắt đầu (từ con số 0)
+
+window.NIHAO_DATA = {
+  levels: [
+    {
+      id: "hsk1",
+      code: "HSK 1",
+      stepNumber: 1,
+      badge: "Khởi đầu từ 0",
+      title: "Làm quen Pinyin, thanh điệu & giao tiếp sinh tồn",
+      themeColor: "#FFB5A7",
+      themeSoft: "#FFF0ED",
+      vocabCount: "150 từ",
+      lessonCount: "5 chặng mẫu",
+      duration: "4–6 tuần",
+      dailyTime: "15 phút/ngày",
+      goalSummary:
+        "Đọc được phiên âm Pinyin chuẩn, không còn sợ 4 thanh điệu và tự tin chào hỏi, giới thiệu bản thân, gọi món đơn giản.",
+      outcomes: [
+        "Đọc chuẩn 4 thanh điệu & ghép âm Pinyin cơ bản",
+        "Chào hỏi, cảm ơn, hỏi tên, tuổi và quốc tịch",
+        "Đọc số đếm, ngày giờ, giá tiền và gọi món cơ bản"
+      ],
+      lessons: [
+        {
+          id: "hsk1-l1",
+          number: "Bài 01",
+          title: "4 thanh điệu & lời chào đầu tiên",
+          goal: "Phát âm đúng thanh điệu và nói lời chào, cảm ơn tự nhiên.",
+          duration: "10 phút",
+          samples: [
+            { hanzi: "你好", pinyin: "nǐ hǎo", meaning: "Xin chào" },
+            { hanzi: "谢谢", pinyin: "xiè xie", meaning: "Cảm ơn" },
+            { hanzi: "再见", pinyin: "zài jiàn", meaning: "Tạm biệt" }
+          ]
+        },
+        {
+          id: "hsk1-l2",
+          number: "Bài 02",
+          title: "Giới thiệu tên & bạn đến từ đâu?",
+          goal: "Nói được tên mình và giới thiệu mình là người Việt Nam.",
+          duration: "12 phút",
+          samples: [
+            { hanzi: "我叫安", pinyin: "wǒ jiào Ān", meaning: "Tôi tên là An" },
+            { hanzi: "我是越南人", pinyin: "wǒ shì Yuènán rén", meaning: "Tôi là người Việt Nam" }
+          ]
+        },
+        {
+          id: "hsk1-l3",
+          number: "Bài 03",
+          title: "Số đếm, giá tiền & mua sắm cơ bản",
+          goal: "Hỏi giá tiền và nghe hiểu con số từ 1 đến 100.",
+          duration: "15 phút",
+          samples: [
+            { hanzi: "这个多少钱？", pinyin: "zhège duōshao qián?", meaning: "Cái này bao nhiêu tiền?" },
+            { hanzi: "太贵了", pinyin: "tài guì le", meaning: "Đắt quá rồi" }
+          ]
+        },
+        {
+          id: "hsk1-l4",
+          number: "Bài 04",
+          title: "Gọi đồ uống & món ăn yêu thích",
+          goal: "Gọi trà sữa, cà phê hoặc món ăn đơn giản bằng câu hoàn chỉnh.",
+          duration: "15 phút",
+          samples: [
+            { hanzi: "我想喝茶", pinyin: "wǒ xiǎng hē chá", meaning: "Tôi muốn uống trà" },
+            { hanzi: "很好吃", pinyin: "hěn hǎochī", meaning: "Rất ngon" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "hsk2",
+      code: "HSK 2",
+      stepNumber: 2,
+      badge: "Giao tiếp hàng ngày",
+      title: "Hội thoại trôi chảy về lịch trình, thời tiết & đi lại",
+      themeColor: "#B8E0D2",
+      themeSoft: "#EDF9F5",
+      vocabCount: "300 từ",
+      lessonCount: "4 chặng mẫu",
+      duration: "6–8 tuần",
+      dailyTime: "15–20 phút/ngày",
+      goalSummary:
+        "Nối câu dài hơn, kể về sinh hoạt hằng ngày, hỏi đường, đặt lịch hẹn và hiểu đoạn hội thoại ngắn chậm rãi.",
+      outcomes: [
+        "Kể về lịch trình sáng – chiều – tối và sở thích cá nhân",
+        "Hỏi đường, đặt xe, hỏi thời tiết và thời gian di chuyển",
+        "So sánh đơn giản (đắt hơn, nhanh hơn, thích hơn)"
+      ],
+      lessons: [
+        {
+          id: "hsk2-l1",
+          number: "Bài 01",
+          title: "Một ngày của mình diễn ra thế nào?",
+          goal: "Diễn đạt thời gian biểu hằng ngày bằng câu có trạng ngữ thời gian.",
+          duration: "15 phút",
+          samples: [
+            { hanzi: "我每天七点起床", pinyin: "wǒ měitiān qī diǎn qǐchuáng", meaning: "Mỗi ngày tôi dậy lúc 7 giờ" },
+            { hanzi: "晚上一起吃饭吧", pinyin: "wǎnshang yìqǐ chīfàn ba", meaning: "Tối nay đi ăn cùng nhau nhé" }
+          ]
+        },
+        {
+          id: "hsk2-l2",
+          number: "Bài 02",
+          title: "Hỏi đường & di chuyển quanh thành phố",
+          goal: "Hỏi vị trí ga tàu, quán ăn và hiểu chỉ dẫn rẽ trái/phải.",
+          duration: "15 phút",
+          samples: [
+            { hanzi: "请问，地铁站在哪儿？", pinyin: "qǐngwèn, dìtiězhàn zài nǎr?", meaning: "Xin hỏi, ga tàu điện ở đâu?" },
+            { hanzi: "往前走五分钟", pinyin: "wǎng qián zǒu wǔ fēnzhōng", meaning: "Đi thẳng phía trước 5 phút" }
+          ]
+        },
+        {
+          id: "hsk2-l3",
+          number: "Bài 03",
+          title: "So sánh & chọn lựa khi mua đồ",
+          goal: "Dùng cấu trúc chữ 比 (bǐ) để so sánh giá cả, kích cỡ, thời tiết.",
+          duration: "18 phút",
+          samples: [
+            { hanzi: "今天比昨天冷", pinyin: "jīntiān bǐ zuótiān lěng", meaning: "Hôm nay lạnh hơn hôm qua" },
+            { hanzi: "这件比那件好看", pinyin: "zhè jiàn bǐ nà jiàn hǎokàn", meaning: "Chiếc này đẹp hơn chiếc kia" }
+          ]
+        },
+        {
+          id: "hsk2-l4",
+          number: "Bài 04",
+          title: "Sở thích cuối tuần & hẹn bạn bè",
+          goal: "Mời bạn đi xem phim, du lịch và từ chối lịch sự khi bận.",
+          duration: "15 phút",
+          samples: [
+            { hanzi: "周末你有什么打算？", pinyin: "zhōumò nǐ yǒu shénme dǎsuàn?", meaning: "Cuối tuần bạn có dự định gì?" },
+            { hanzi: "真不好意思，我有点忙", pinyin: "zhēn bù hǎoyìsi, wǒ yǒudiǎn máng", meaning: "Thật ngại quá, tôi hơi bận" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "hsk3",
+      code: "HSK 3",
+      stepNumber: 3,
+      badge: "Độc lập sinh hoạt",
+      title: "Tự tin du lịch, học tập & kể chuyện không cần Pinyin",
+      themeColor: "#FCE38A",
+      themeSoft: "#FFFBE6",
+      vocabCount: "600 từ",
+      lessonCount: "4 chặng mẫu",
+      duration: "8–10 tuần",
+      dailyTime: "20 phút/ngày",
+      goalSummary:
+        "Bắt đầu bỏ dần Pinyin, đọc trực tiếp chữ Hán trong biển hiệu, tin nhắn và tự xử lý tình huống khi đi du lịch hoặc học tập.",
+      outcomes: [
+        "Đọc hiểu chữ Hán độc lập không cần phụ thuộc Pinyin",
+        "Diễn đạt nguyên nhân – kết quả, điều kiện và cảm xúc rõ ràng",
+        "Tự đặt phòng, đổi lịch, hỏi khám bệnh và nhắn tin với bạn Trung Quốc"
+      ],
+      lessons: [
+        {
+          id: "hsk3-l1",
+          number: "Bài 01",
+          title: "Kể lại trải nghiệm & kỷ niệm đáng nhớ",
+          goal: "Dùng linh hoạt 了 (le), 过 (guo) để kể chuyện đã từng trải qua.",
+          duration: "18 phút",
+          samples: [
+            { hanzi: "我去过北京两次", pinyin: "wǒ qùguo Běijīng liǎng cì", meaning: "Tôi đã từng đi Bắc Kinh hai lần" },
+            { hanzi: "那次旅行让我很难忘", pinyin: "nà cì lǚxíng ràng wǒ hěn nánwàng", meaning: "Chuyến đi ấy khiến tôi rất khó quên" }
+          ]
+        },
+        {
+          id: "hsk3-l2",
+          number: "Bài 02",
+          title: "Xử lý tình huống khi đi du lịch & khách sạn",
+          goal: "Nhận phòng, yêu cầu hỗ trợ và hỏi thông tin chuyến đi.",
+          duration: "20 phút",
+          samples: [
+            { hanzi: "我预订了一间双人房", pinyin: "wǒ yùdìng le yì jiān shuāngrénfáng", meaning: "Tôi đã đặt một phòng đôi" },
+            { hanzi: "请问可以延迟退房吗？", pinyin: "qǐngwèn kěyǐ yánchí tuìfáng ma?", meaning: "Xin hỏi có thể trả phòng muộn không?" }
+          ]
+        },
+        {
+          id: "hsk3-l3",
+          number: "Bài 03",
+          title: "Giải thích lý do & đưa lời khuyên",
+          goal: "Kết nối ý mạch lạc bằng 因为…所以… (bởi vì… nên…) và 如果…就…",
+          duration: "20 phút",
+          samples: [
+            { hanzi: "因为下雨，所以我们改天去", pinyin: "yīnwèi xiàyǔ, suǒyǐ wǒmen gǎitiān qù", meaning: "Vì trời mưa nên chúng tôi đổi sang hôm khác đi" }
+          ]
+        },
+        {
+          id: "hsk3-l4",
+          number: "Bài 04",
+          title: "Đọc tin nhắn & bài đăng ngắn không cần Pinyin",
+          goal: "Luyện nhận diện nhanh 600 từ cốt lõi trong ngữ cảnh thật.",
+          duration: "20 phút",
+          samples: [
+            { hanzi: "别忘了带伞，下午可能会下雨", pinyin: "bié wàng le dài sǎn, xiàwǔ kěnéng huì xiàyǔ", meaning: "Đừng quên mang ô, chiều có thể sẽ mưa" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "hsk4",
+      code: "HSK 4",
+      stepNumber: 4,
+      badge: "Tự tin công việc",
+      title: "Thảo luận đa chủ đề, phỏng vấn & giao tiếp văn phòng",
+      themeColor: "#D6CCF2",
+      themeSoft: "#F5F2FD",
+      vocabCount: "1.200 từ",
+      lessonCount: "4 chặng mẫu",
+      duration: "10–12 tuần",
+      dailyTime: "25 phút/ngày",
+      goalSummary:
+        "Trình bày quan điểm cá nhân mạch lạc, nghe hiểu podcast/video tốc độ tự nhiên và dùng tiếng Trung trong môi trường học tập, công việc.",
+      outcomes: [
+        "Thảo luận về công việc, sức khỏe, thói quen và công nghệ",
+        "Viết email ngắn, tin nhắn công việc và tóm tắt ý chính",
+        "Đủ nền tảng xin học bổng đại học hoặc ứng tuyển vị trí cần tiếng Trung"
+      ],
+      lessons: [
+        {
+          id: "hsk4-l1",
+          number: "Bài 01",
+          title: "Trình bày quan điểm & lập luận rõ ràng",
+          goal: "Dùng các liên từ nâng cao (不但…而且…, 虽然…但是…) khi thảo luận.",
+          duration: "22 phút",
+          samples: [
+            { hanzi: "学外语不但有趣，而且很有用", pinyin: "xué wàiyǔ búdàn yǒuqù, érqiě hěn yǒuyòng", meaning: "Học ngoại ngữ không chỉ thú vị mà còn rất hữu ích" }
+          ]
+        },
+        {
+          id: "hsk4-l2",
+          number: "Bài 02",
+          title: "Phỏng vấn & giới thiệu kinh nghiệm làm việc",
+          goal: "Nói về điểm mạnh, mục tiêu nghề nghiệp và kế hoạch phát triển.",
+          duration: "25 phút",
+          samples: [
+            { hanzi: "我对这个岗位非常感兴趣", pinyin: "wǒ duì zhège gǎngwèi fēicháng gǎn xìngqù", meaning: "Tôi rất hứng thú với vị trí này" }
+          ]
+        },
+        {
+          id: "hsk4-l3",
+          number: "Bài 03",
+          title: "Thói quen sống khỏe & quản lý thời gian",
+          goal: "Đọc hiểu bài blog ngắn về lối sống và bày tỏ sự đồng tình/phản biện.",
+          duration: "22 phút",
+          samples: [
+            { hanzi: "养成每天学习的习惯很重要", pinyin: "yǎngchéng měitiān xuéxí de xíguàn hěn zhòngyào", meaning: "Hình thành thói quen học mỗi ngày rất quan trọng" }
+          ]
+        },
+        {
+          id: "hsk4-l4",
+          number: "Bài 04",
+          title: "Viết đoạn văn 80 chữ mạch lạc theo đề HSK 4",
+          goal: "Ghép từ khóa thành đoạn mô tả tự nhiên, tránh dịch từng từ từ tiếng Việt.",
+          duration: "25 phút",
+          samples: [
+            { hanzi: "只要坚持下去，就一定会有进步", pinyin: "zhǐyào jiānchí xiàqù, jiù yídìng huì yǒu jìnbù", meaning: "Chỉ cần kiên trì tiếp tục, nhất định sẽ có tiến bộ" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "hsk5",
+      code: "HSK 5",
+      stepNumber: 5,
+      badge: "Thành thạo đọc & nói",
+      title: "Đọc báo, xem phim không phụ đề & diễn đạt sắc thái tinh tế",
+      themeColor: "#B8D8F8",
+      themeSoft: "#EEF6FE",
+      vocabCount: "2.500 từ",
+      lessonCount: "4 chặng mẫu",
+      duration: "12–16 tuần",
+      dailyTime: "30 phút/ngày",
+      goalSummary:
+        "Đọc tin tức, tạp chí, hiểu phim ảnh Trung Quốc và thuyết trình trọn vẹn một chủ đề chuyên sâu với vốn từ phong phú và thành ngữ thông dụng.",
+      outcomes: [
+        "Đọc hiểu báo chí, bài phân tích văn hóa – xã hội – kinh tế",
+        "Sử dụng thành ngữ 4 chữ (成语) tự nhiên đúng ngữ cảnh",
+        "Thuyết trình, phản biện và viết bài luận ngắn chuẩn cấu trúc"
+      ],
+      lessons: [
+        {
+          id: "hsk5-l1",
+          number: "Bài 01",
+          title: "Đọc hiểu tin tức & xu hướng xã hội",
+          goal: "Nắm bắt nhanh ý chính, thái độ tác giả và từ vựng văn viết trang trọng.",
+          duration: "25 phút",
+          samples: [
+            { hanzi: "随着科技的发展，学习方式越来越灵活", pinyin: "suízhe kējì de fāzhǎn, xuéxí fāngshì yuèláiyuè línghuó", meaning: "Cùng với sự phát triển của công nghệ, cách học ngày càng linh hoạt" }
+          ]
+        },
+        {
+          id: "hsk5-l2",
+          number: "Bài 02",
+          title: "Thành ngữ 4 chữ (成语) dễ dùng trong đời sống",
+          goal: "Hiểu câu chuyện gốc và áp dụng 15 thành ngữ phổ biến nhất.",
+          duration: "25 phút",
+          samples: [
+            { hanzi: "循序渐进", pinyin: "xún xù jiàn jìn", meaning: "Từng bước một, tiến bộ dần theo trình tự" },
+            { hanzi: "半途而废", pinyin: "bàn tú ér fèi", meaning: "Bỏ cuộc giữa chừng" }
+          ]
+        },
+        {
+          id: "hsk5-l3",
+          number: "Bài 03",
+          title: "Nghe hiểu phim ảnh & hội thoại tốc độ bản xứ",
+          goal: "Bắt kịp khẩu ngữ, từ nối cảm xúc và ngữ điệu nhấn mạnh.",
+          duration: "28 phút",
+          samples: [
+            { hanzi: "说到底，还是得靠平时的积累", pinyin: "shuōdàodǐ, háishi děi kào píngshí de jīlěi", meaning: "Nói cho cùng vẫn phải dựa vào sự tích lũy hằng ngày" }
+          ]
+        },
+        {
+          id: "hsk5-l4",
+          number: "Bài 04",
+          title: "Thuyết trình ngắn & viết bài nghị luận HSK 5",
+          goal: "Xây dựng bài nói/viết có mở bài, luận điểm, dẫn chứng và kết luận.",
+          duration: "30 phút",
+          samples: [
+            { hanzi: "总而言之，找到适合自己的节奏最关键", pinyin: "zǒng'éryánzhī, zhǎodào shìhé zìjǐ de jiézòu zuì guānjiàn", meaning: "Tóm lại, tìm được nhịp độ phù hợp với bản thân là quan trọng nhất" }
+          ]
+        }
+      ]
+    }
+  ],
+
+  flashcards: [
+    {
+      id: "fc-1",
+      tag: "HSK 1 · Bài 01",
+      hanzi: "你好",
+      pinyin: "nǐ hǎo",
+      toneNote: "Mẹo thanh điệu: Hai thanh 3 đứng cạnh nhau → đọc nhẹ thành “ní hǎo”.",
+      meaning: "Xin chào",
+      exampleHanzi: "你好！很高兴认识你。",
+      examplePinyin: "Nǐ hǎo! Hěn gāoxìng rènshi nǐ.",
+      exampleVi: "Xin chào! Rất vui được làm quen với bạn."
+    },
+    {
+      id: "fc-2",
+      tag: "HSK 1 · Bài 01",
+      hanzi: "谢谢",
+      pinyin: "xiè xie",
+      toneNote: "Mẹo phát âm: Chữ đầu đọc dứt khoát (thanh 4), chữ sau đọc nhẹ ngắn.",
+      meaning: "Cảm ơn",
+      exampleHanzi: "谢谢你的帮助！",
+      examplePinyin: "Xièxie nǐ de bāngzhù!",
+      exampleVi: "Cảm ơn sự giúp đỡ của bạn!"
+    },
+    {
+      id: "fc-3",
+      tag: "HSK 1 · Bài 02",
+      hanzi: "请问",
+      pinyin: "qǐng wèn",
+      toneNote: "Mẹo giao tiếp: Thêm ở đầu mọi câu hỏi để nghe cực kỳ lịch sự.",
+      meaning: "Xin hỏi",
+      exampleHanzi: "请问，洗手间在哪儿？",
+      examplePinyin: "Qǐngwèn, xǐshǒujiān zài nǎr?",
+      exampleVi: "Xin hỏi, nhà vệ sinh ở đâu ạ?"
+    },
+    {
+      id: "fc-4",
+      tag: "HSK 1 · Bài 03",
+      hanzi: "好吃",
+      pinyin: "hǎo chī",
+      toneNote: "Mẹo nhớ nhanh: 好 (tốt) + 吃 (ăn) = ăn thấy tốt → Ngon!",
+      meaning: "Ngon (đồ ăn)",
+      exampleHanzi: "这家店的牛肉面很好吃。",
+      examplePinyin: "Zhè jiā diàn de niúròumiàn hěn hǎochī.",
+      exampleVi: "Mì bò của quán này rất ngon."
+    },
+    {
+      id: "fc-5",
+      tag: "HSK 1 · Bài 01",
+      hanzi: "再见",
+      pinyin: "zài jiàn",
+      toneNote: "Mẹo nhớ nhanh: 再 (lại) + 见 (gặp) = hẹn gặp lại!",
+      meaning: "Tạm biệt",
+      exampleHanzi: "明天见，再见！",
+      examplePinyin: "Míngtiān jiàn, zài jiàn!",
+      exampleVi: "Hẹn gặp ngày mai, tạm biệt!"
+    }
+  ],
+
+  faqs: [
+    {
+      q: "Mình chưa biết chút nào về Pinyin hay chữ Hán có học được không?",
+      a: "Hoàn toàn được! Chặng HSK 1 được thiết kế dành riêng cho người bắt đầu từ con số 0. Bạn sẽ đi từ 4 thanh điệu, ghép âm Pinyin cơ bản kèm âm thanh đọc chậm rồi mới ghép vào câu giao tiếp ngắn."
+    },
+    {
+      q: "Học hoàn toàn trên điện thoại có bị nhỏ chữ hay khó bấm không?",
+      a: "Không hề. Toàn bộ giao diện được thiết kế theo chuẩn mobile-first: chữ Hán hiển thị lớn, Pinyin rõ nét, nút bấm và thanh chuyển cấp độ HSK 1–5 đều tối ưu để thao tác gọn bằng một ngón tay."
+    },
+    {
+      q: "Mỗi ngày chỉ rảnh 15 phút thì bao lâu xong HSK 1?",
+      a: "Với nhịp học đều đặn 15 phút mỗi ngày (1 bài ngắn + lật 5–10 thẻ flashcard ôn lại), đa số người mới có thể hoàn thành nền tảng HSK 1 trong khoảng 4 đến 6 tuần mà không bị áp lực."
+    },
+    {
+      q: "Lộ trình từ HSK 1 lên HSK 5 có bị nhồi nhét ngữ pháp nặng không?",
+      a: "Không. Mỗi bài học đều xoay quanh một mục tiêu giao tiếp thực tế (chào hỏi, gọi món, hỏi đường, du lịch, phỏng vấn...). Ngữ pháp chỉ xuất hiện đúng lúc bạn cần để nói câu đó tự nhiên."
+    }
+  ]
+};
+
+</script>
+  <script>
+// Nihao Pastel — Tương tác Mobile-First cho lộ trình HSK 1 → HSK 5 & Flashcard học thử
+
+(function () {
+  const data = window.NIHAO_DATA;
+  if (!data) return;
+
+  // State
+  let activeLevelIndex = 0;
+  let openLessonId = data.levels[0].lessons[0].id;
+  let completedLessons = loadSet("nihao_completed_lessons");
+  let learnedCards = loadSet("nihao_learned_cards");
+  let activeCardIndex = 0;
+  let selectedGoalKey = "hsk1";
+  let toastTimer = null;
+
+  // DOM References
+  const root = document.documentElement;
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileDrawer = document.getElementById("mobile-drawer");
+  const levelTabsEl = document.getElementById("level-tabs");
+  const progressStageLabel = document.getElementById("progress-stage-label");
+  const progressVocabLabel = document.getElementById("progress-vocab-label");
+  const progressFill = document.getElementById("progress-fill");
+  const progressBarRole = document.getElementById("progress-bar-role");
+  const levelMetaRow = document.getElementById("level-meta-row");
+  const levelTitle = document.getElementById("level-title");
+  const levelGoalSummary = document.getElementById("level-goal-summary");
+  const levelOutcomes = document.getElementById("level-outcomes");
+  const lessonList = document.getElementById("lesson-list");
+  const levelCompletedBadge = document.getElementById("level-completed-badge");
+  const prevLevelBtn = document.getElementById("prev-level-btn");
+  const nextLevelBtn = document.getElementById("next-level-btn");
+  const selectLevelCta = document.getElementById("select-level-cta");
+
+  // Flashcard DOM
+  const flashcardEl = document.getElementById("flashcard");
+  const fcTagFront = document.getElementById("fc-tag-front");
+  const fcTagBack = document.getElementById("fc-tag-back");
+  const fcHanzi = document.getElementById("fc-hanzi");
+  const fcPinyin = document.getElementById("fc-pinyin");
+  const fcMeaning = document.getElementById("fc-meaning");
+  const fcToneNote = document.getElementById("fc-tone-note");
+  const fcExHanzi = document.getElementById("fc-ex-hanzi");
+  const fcExPinyin = document.getElementById("fc-ex-pinyin");
+  const fcExVi = document.getElementById("fc-ex-vi");
+  const fcCounter = document.getElementById("fc-counter");
+  const fcDots = document.getElementById("fc-dots");
+  const fcLearnedSummary = document.getElementById("fc-learned-summary");
+  const fcMarkLearnedBtn = document.getElementById("fc-mark-learned");
+  const fcFlipBtn = document.getElementById("fc-flip-btn");
+  const fcPrevBtn = document.getElementById("fc-prev");
+  const fcNextBtn = document.getElementById("fc-next");
+  const fcSpeakFront = document.getElementById("fc-speak-front");
+  const fcSpeakBack = document.getElementById("fc-speak-back");
+
+  // FAQ & CTA DOM
+  const faqList = document.getElementById("faq-list");
+  const goalPicker = document.getElementById("goal-picker");
+  const starterPlanForm = document.getElementById("starter-plan-form");
+  const learnerNameInput = document.getElementById("learner-name");
+  const planResult = document.getElementById("plan-result");
+  const toastEl = document.getElementById("toast");
+
+  function loadSet(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      return new Set(raw ? JSON.parse(raw) : []);
+    } catch {
+      return new Set();
+    }
+  }
+
+  function saveSet(key, setObj) {
+    try {
+      localStorage.setItem(key, JSON.stringify(Array.from(setObj)));
+    } catch {
+      // ignore storage restrictions
+    }
+  }
+
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("is-visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 2200);
+  }
+
+  // Web Speech API Chinese Pronunciation Helper
+  function speakChinese(text) {
+    if (!text) return;
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "zh-CN";
+      utter.rate = 0.85; // Slower for beginners
+      const voices = window.speechSynthesis.getVoices();
+      const zhVoice = voices.find((v) => v.lang && v.lang.toLowerCase().startsWith("zh"));
+      if (zhVoice) utter.voice = zhVoice;
+      window.speechSynthesis.speak(utter);
+      showToast(`🔊 Đang đọc mẫu: ${text}`);
+    } else {
+      showToast(`Trình duyệt chưa hỗ trợ đọc giọng nói cho "${text}"`);
+    }
+  }
+
+  // Mobile Menu Drawer
+  menuToggle.addEventListener("click", () => {
+    const isOpen = mobileDrawer.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  mobileDrawer.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileDrawer.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Hero & Global Speak Buttons
+  document.querySelectorAll("[data-speak]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      speakChinese(btn.getAttribute("data-speak"));
+    });
+  });
+
+  // Quick jump to HSK 1 from Hero / Header
+  ["header-start-btn", "hero-start-hsk1"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("click", () => {
+        activeLevelIndex = 0;
+        openLessonId = data.levels[0].lessons[0].id;
+        renderLevelTabs();
+        renderActiveLevel();
+      });
+    }
+  });
+
+  // =========================================================================
+  // 1. HSK 1 → HSK 5 Roadmap Renderer
+  // =========================================================================
+  function renderLevelTabs() {
+    levelTabsEl.innerHTML = "";
+    data.levels.forEach((lvl, idx) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "level-tab" + (idx === activeLevelIndex ? " is-active" : "");
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-selected", String(idx === activeLevelIndex));
+      btn.style.setProperty("--tab-color", lvl.themeColor);
+      btn.innerHTML = `
+        <span class="level-tab-code">
+          <span>${lvl.code}</span>
+          <span class="level-tab-dot" style="background:${lvl.themeColor}"></span>
+        </span>
+        <span class="level-tab-label">${lvl.badge}</span>
+      `;
+      btn.addEventListener("click", () => {
+        activeLevelIndex = idx;
+        openLessonId = lvl.lessons[0].id;
+        renderLevelTabs();
+        renderActiveLevel();
+      });
+      levelTabsEl.appendChild(btn);
+    });
+  }
+
+  function renderActiveLevel() {
+    const lvl = data.levels[activeLevelIndex];
+    root.style.setProperty("--active-accent", lvl.themeColor);
+    root.style.setProperty("--active-soft", lvl.themeSoft);
+
+    // Update progressive meter
+    const pct = (lvl.stepNumber / data.levels.length) * 100;
+    progressStageLabel.textContent = `Chặng ${lvl.stepNumber} / ${data.levels.length} · ${lvl.code}`;
+    progressVocabLabel.textContent = lvl.vocabCount;
+    progressFill.style.width = `${pct}%`;
+    progressBarRole.setAttribute("aria-valuenow", String(lvl.stepNumber));
+
+    // Meta badges
+    levelMetaRow.innerHTML = `
+      <span class="stamp-pill">${lvl.code} · ${lvl.badge}</span>
+      <span class="meta-pill">📚 ${lvl.vocabCount}</span>
+      <span class="meta-pill">⏱ ${lvl.duration} (${lvl.dailyTime})</span>
+    `;
+
+    levelTitle.textContent = lvl.title;
+    levelGoalSummary.textContent = lvl.goalSummary;
+
+    levelOutcomes.innerHTML = lvl.outcomes
+      .map(
+        (item) => `
+        <li>
+          <span class="outcomes-check" aria-hidden="true">✓</span>
+          <span>${item}</span>
+        </li>`
+      )
+      .join("");
+
+    // Render lessons accordion
+    renderLessons(lvl);
+
+    // Footer buttons
+    prevLevelBtn.disabled = activeLevelIndex === 0;
+    prevLevelBtn.style.opacity = activeLevelIndex === 0 ? "0.45" : "1";
+    prevLevelBtn.textContent =
+      activeLevelIndex > 0 ? `← ${data.levels[activeLevelIndex - 1].code}` : "← Cấp đầu tiên";
+
+    nextLevelBtn.disabled = activeLevelIndex === data.levels.length - 1;
+    nextLevelBtn.style.opacity = activeLevelIndex === data.levels.length - 1 ? "0.45" : "1";
+    nextLevelBtn.textContent =
+      activeLevelIndex < data.levels.length - 1
+        ? `Lên ${data.levels[activeLevelIndex + 1].code} →`
+        : "Đích đến HSK 5 ★";
+
+    selectLevelCta.textContent = `Nhận lịch học ${lvl.code}`;
+    selectLevelCta.onclick = () => {
+      const targetGoal = lvl.id === "hsk5" ? "hsk4" : lvl.id;
+      setSelectedGoal(targetGoal);
+    };
+  }
+
+  function renderLessons(lvl) {
+    const doneCount = lvl.lessons.filter((l) => completedLessons.has(l.id)).length;
+    levelCompletedBadge.textContent = `Đã thử: ${doneCount}/${lvl.lessons.length} bài`;
+
+    lessonList.innerHTML = "";
+    lvl.lessons.forEach((lesson) => {
+      const isOpen = lesson.id === openLessonId;
+      const isDone = completedLessons.has(lesson.id);
+
+      const item = document.createElement("article");
+      item.className = "lesson-item" + (isOpen ? " is-open" : "");
+
+      const samplesHtml = lesson.samples
+        .map(
+          (s) => `
+          <div class="sample-row">
+            <div>
+              <div class="sample-hanzi">${s.hanzi}</div>
+              <div class="sample-pinyin">${s.pinyin}</div>
+              <div class="sample-meaning">${s.meaning}</div>
+            </div>
+            <button type="button" class="speak-btn" data-sample-speak="${s.hanzi}" aria-label="Nghe câu ${s.hanzi}">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              </svg>
+            </button>
+          </div>`
+        )
+        .join("");
+
+      item.innerHTML = `
+        <button type="button" class="lesson-trigger" aria-expanded="${isOpen}">
+          <div class="lesson-trigger-left">
+            <span class="lesson-num">${isDone ? "✓ " : ""}${lesson.number}</span>
+            <div class="lesson-title-wrap">
+              <span class="lesson-title">${lesson.title}</span>
+              <span class="lesson-sub">⏱ ${lesson.duration} · ${lesson.samples.length} mẫu câu cốt lõi</span>
+            </div>
+          </div>
+          <span class="lesson-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="lesson-body">
+          <p class="lesson-goal-line"><strong>Mục tiêu bài học:</strong> ${lesson.goal}</p>
+          <div class="sample-phrases">${samplesHtml}</div>
+          <div class="lesson-footer-actions">
+            <span style="font-size:0.82rem;color:var(--ink-muted);">Chạm loa để nghe chậm từng câu</span>
+            <button type="button" class="btn btn-sm mark-done-btn ${isDone ? "is-done" : ""}" data-toggle-done="${lesson.id}">
+              ${isDone ? "✓ Đã hoàn thành thử" : "Đánh dấu đã xem bài"}
+            </button>
+          </div>
+        </div>
+      `;
+
+      const trigger = item.querySelector(".lesson-trigger");
+      trigger.addEventListener("click", () => {
+        openLessonId = openLessonId === lesson.id ? null : lesson.id;
+        renderLessons(lvl);
+      });
+
+      item.querySelectorAll("[data-sample-speak]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          speakChinese(btn.getAttribute("data-sample-speak"));
+        });
+      });
+
+      const doneBtn = item.querySelector("[data-toggle-done]");
+      doneBtn.addEventListener("click", () => {
+        if (completedLessons.has(lesson.id)) {
+          completedLessons.delete(lesson.id);
+          showToast(`Đã bỏ đánh dấu ${lesson.number}`);
+        } else {
+          completedLessons.add(lesson.id);
+          showToast(`🎉 Tuyệt vời! Bạn đã thử xong ${lvl.code} · ${lesson.number}`);
+        }
+        saveSet("nihao_completed_lessons", completedLessons);
+        renderLessons(lvl);
+      });
+
+      lessonList.appendChild(item);
+    });
+  }
+
+  prevLevelBtn.addEventListener("click", () => {
+    if (activeLevelIndex > 0) {
+      activeLevelIndex -= 1;
+      openLessonId = data.levels[activeLevelIndex].lessons[0].id;
+      renderLevelTabs();
+      renderActiveLevel();
+    }
+  });
+
+  nextLevelBtn.addEventListener("click", () => {
+    if (activeLevelIndex < data.levels.length - 1) {
+      activeLevelIndex += 1;
+      openLessonId = data.levels[activeLevelIndex].lessons[0].id;
+      renderLevelTabs();
+      renderActiveLevel();
+    }
+  });
+
+  // =========================================================================
+  // 2. Interactive Mini Flashcard (HSK 1 Tryout)
+  // =========================================================================
+  function renderFlashcard() {
+    const card = data.flashcards[activeCardIndex];
+    flashcardEl.classList.remove("is-flipped");
+
+    fcTagFront.textContent = card.tag;
+    fcTagBack.textContent = card.tag;
+    fcHanzi.textContent = card.hanzi;
+    fcPinyin.textContent = card.pinyin;
+    fcMeaning.textContent = card.meaning;
+    fcToneNote.textContent = card.toneNote;
+    fcExHanzi.textContent = card.exampleHanzi;
+    fcExPinyin.textContent = card.examplePinyin;
+    fcExVi.textContent = card.exampleVi;
+    fcCounter.textContent = `${activeCardIndex + 1} / ${data.flashcards.length}`;
+
+    const isLearned = learnedCards.has(card.id);
+    fcMarkLearnedBtn.textContent = isLearned ? "✓ Đã nhớ thẻ này (bỏ chọn)" : "✓ Đánh dấu đã nhớ thẻ này";
+    fcMarkLearnedBtn.className = isLearned ? "btn btn-butter btn-sm" : "btn btn-mint btn-sm";
+
+    fcLearnedSummary.textContent = `Đã nhớ ${learnedCards.size} / ${data.flashcards.length} thẻ đầu tiên`;
+
+    fcDots.innerHTML = "";
+    data.flashcards.forEach((c, idx) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className =
+        "fc-dot" +
+        (idx === activeCardIndex ? " is-active" : "") +
+        (learnedCards.has(c.id) && idx !== activeCardIndex ? " is-learned" : "");
+      dot.setAttribute("aria-label", `Chọn thẻ ${idx + 1}: ${c.hanzi}`);
+      dot.addEventListener("click", () => {
+        activeCardIndex = idx;
+        renderFlashcard();
+      });
+      fcDots.appendChild(dot);
+    });
+  }
+
+  function toggleFlip() {
+    flashcardEl.classList.toggle("is-flipped");
+  }
+
+  flashcardEl.addEventListener("click", toggleFlip);
+  flashcardEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleFlip();
+    }
+  });
+  fcFlipBtn.addEventListener("click", toggleFlip);
+
+  fcSpeakFront.addEventListener("click", (e) => {
+    e.stopPropagation();
+    speakChinese(data.flashcards[activeCardIndex].hanzi);
+  });
+
+  fcSpeakBack.addEventListener("click", (e) => {
+    e.stopPropagation();
+    speakChinese(data.flashcards[activeCardIndex].exampleHanzi);
+  });
+
+  fcPrevBtn.addEventListener("click", () => {
+    activeCardIndex = (activeCardIndex - 1 + data.flashcards.length) % data.flashcards.length;
+    renderFlashcard();
+  });
+
+  fcNextBtn.addEventListener("click", () => {
+    activeCardIndex = (activeCardIndex + 1) % data.flashcards.length;
+    renderFlashcard();
+  });
+
+  fcMarkLearnedBtn.addEventListener("click", () => {
+    const card = data.flashcards[activeCardIndex];
+    if (learnedCards.has(card.id)) {
+      learnedCards.delete(card.id);
+    } else {
+      learnedCards.add(card.id);
+      showToast(`✨ Bạn đã nhớ từ "${card.hanzi}" (${card.meaning})!`);
+    }
+    saveSet("nihao_learned_cards", learnedCards);
+    renderFlashcard();
+  });
+
+  // =========================================================================
+  // 3. FAQ Accordion
+  // =========================================================================
+  function renderFaqs() {
+    faqList.innerHTML = "";
+    data.faqs.forEach((faq, idx) => {
+      const item = document.createElement("article");
+      item.className = "faq-item" + (idx === 0 ? " is-open" : "");
+      item.innerHTML = `
+        <button type="button" class="faq-trigger" aria-expanded="${idx === 0}">
+          <span>${faq.q}</span>
+          <span class="faq-plus" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">${faq.a}</div>
+      `;
+      const btn = item.querySelector(".faq-trigger");
+      btn.addEventListener("click", () => {
+        const nowOpen = item.classList.toggle("is-open");
+        btn.setAttribute("aria-expanded", String(nowOpen));
+      });
+      faqList.appendChild(item);
+    });
+  }
+
+  // =========================================================================
+  // 4. Starter Plan Generator (Client-Side Instant Feedback)
+  // =========================================================================
+  const planTemplates = {
+    hsk1: {
+      label: "Chặng HSK 1 (Bắt đầu từ số 0)",
+      days: [
+        "Ngày 1–2: Làm quen 4 thanh điệu + 5 câu chào hỏi đầu tiên (15 phút/ngày).",
+        "Ngày 3–4: Ghép âm Pinyin cơ bản & giới thiệu tên, quốc tịch.",
+        "Ngày 5–6: Học số đếm 1–100, hỏi giá tiền và gọi trà sữa/món ăn.",
+        "Ngày 7: Ôn lại 20 thẻ Flashcard retro + tự nói đoạn giới thiệu 30 giây."
+      ]
+    },
+    hsk2: {
+      label: "Chặng HSK 2 (Giao tiếp hằng ngày)",
+      days: [
+        "Ngày 1–2: Luyện nói thời gian biểu sáng–chiều–tối bằng câu nối tự nhiên.",
+        "Ngày 3–4: Tình huống hỏi đường, ga tàu điện & chỉ hướng rẽ trái/phải.",
+        "Ngày 5–6: Dùng mẫu câu so sánh 比 (bǐ) khi mua sắm & nói về thời tiết.",
+        "Ngày 7: Thực hành 15 thẻ Flashcard hội thoại cuối tuần cùng bạn bè."
+      ]
+    },
+    hsk3: {
+      label: "Chặng HSK 3 (Độc lập du lịch & bỏ dần Pinyin)",
+      days: [
+        "Ngày 1–2: Kể trải nghiệm đã từng đi với 了 và 过, tập đọc chữ Hán không Pinyin.",
+        "Ngày 3–4: Thực hành đặt phòng khách sạn, đổi lịch & xử lý tình huống sân bay.",
+        "Ngày 5–6: Kết nối lý do – kết quả tự nhiên bằng 因为…所以…",
+        "Ngày 7: Đọc 3 tin nhắn ngắn hoàn toàn bằng chữ Hán & tự kiểm tra."
+      ]
+    },
+    hsk4: {
+      label: "Chặng HSK 4–5 (Công việc & Đọc hiểu chuyên sâu)",
+      days: [
+        "Ngày 1–2: Luyện liên từ lập luận (不但…而且…) để trình bày ý kiến mạch lạc.",
+        "Ngày 3–4: Mẫu câu phỏng vấn, giới thiệu kinh nghiệm & viết email ngắn.",
+        "Ngày 5–6: Làm quen 5 thành ngữ 4 chữ (成语) thông dụng + đọc bài tin ngắn.",
+        "Ngày 7: Viết đoạn văn 80 chữ tổng kết mục tiêu tuần & thu âm tự nghe lại."
+      ]
+    }
+  };
+
+  function setSelectedGoal(goalKey) {
+    selectedGoalKey = goalKey;
+    goalPicker.querySelectorAll(".goal-option").forEach((btn) => {
+      btn.classList.toggle("is-selected", btn.getAttribute("data-goal") === goalKey);
+    });
+  }
+
+  goalPicker.querySelectorAll(".goal-option").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setSelectedGoal(btn.getAttribute("data-goal"));
+    });
+  });
+
+  starterPlanForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const rawName = learnerNameInput.value.trim();
+    if (!rawName) return;
+    const safeName = rawName.replace(/[<>]/g, "");
+    const tpl = planTemplates[selectedGoalKey] || planTemplates.hsk1;
+
+    planResult.innerHTML = `
+      <p style="margin:0 0 8px;font-weight:800;font-family:var(--font-display);font-size:1.08rem;">
+        🎉 Lịch học 7 ngày dành riêng cho ${safeName}
+      </p>
+      <p style="margin:0 0 10px;font-size:0.86rem;color:var(--ink-muted);">
+        Điểm xuất phát đề xuất: <strong>${tpl.label}</strong> (15 phút/ngày trên điện thoại)
+      </p>
+      <ul style="margin:0;padding-left:18px;display:grid;gap:6px;font-size:0.9rem;">
+        ${tpl.days.map((d) => `<li>${d}</li>`).join("")}
+      </ul>
+    `;
+    planResult.classList.add("is-visible");
+    showToast(`✨ Đã tạo lịch học 7 ngày cho ${safeName}!`);
+  });
+
+  // Init all modules
+  renderLevelTabs();
+  renderActiveLevel();
+  renderFlashcard();
+  renderFaqs();
+})();
+
+</script>
+</body>
+</html>
